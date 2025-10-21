@@ -1,0 +1,42 @@
+		<br><br>
+		<div class="relative"><center><h1>Adicionar a Lista de Desejos</h1><br><br>
+	
+		<form  name="formUTI" action="index.php?cmd=LDins" method="POST">
+	
+		<b>Utilizador</b><br>
+		<div class="form-group">
+		<div class="col-sm-4">
+		<select class="form-control" name="codUti"></div></div>
+	
+		<?php
+		$n=$_SESSION['nome'];
+		$sql="select * from Utilizadores where Nome_Utilizador like '$n'";
+		$res=$lig->query($sql);
+		while($lin=$res->fetch_array())
+		{
+			echo "<option value=",$lin['codUti'],">",$lin['Login'],"</option>";
+			$a=$lin['codUti'];
+		}
+		echo "</select>";
+		?>
+		<br><br>
+		<div class="form-group"><b>Jogo</b>
+		<div class="col-sm-13">
+		<select class="form-control" name="Codigo_Jogo"></div></div>
+	
+		<?php
+		$sql="select * from Jogos";
+		$res=$lig->query($sql);
+		while($lin=$res->fetch_array())
+		{
+			echo "<option value=",$lin['Codigo_Jogo'],">",$lin['Nome_Jogo'],"</option>";
+			$a=$lin['Codigo_Jogo'];
+		}
+		echo "</select>";
+		?>
+		<br>
+	
+		<button type="submit" class="btn btn-secondary">adicionar a lista de desejos</button>
+		<button type="reset" class="btn btn-secondary">Limpar</button>
+	
+		</form></center></div>

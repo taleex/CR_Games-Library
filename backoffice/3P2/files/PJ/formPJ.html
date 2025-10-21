@@ -1,0 +1,48 @@
+		<br><br>
+		<center><h1>Adicionar Jogos na plataforma</h1><br><br>
+
+		<form action="index.php?cmd=PJGins" method="post">
+
+		<div class="form-group">
+		<div class="col-sm-4"><b>Nome de plataforma</b>
+		<select class="form-control" name="pl"></div>
+	
+		<?php
+		$sql="select * from Plataforma";
+		$res=$lig->query($sql);
+		while($lin=$res->fetch_array())
+		{
+			echo "<option value=",$lin['Codigo_Plataforma'],">",$lin['Nome_Plataforma'],"</option>";	
+		}
+		echo "</select>";
+		?>
+		</div>
+		
+		<br>
+		<div class="form-group">
+		<div class="col-sm-4"><b>Nome de Jogo</b>
+		<select class="form-control" name="jg"></div>
+	
+		<?php
+		$sql="select * from Jogos";
+		$res=$lig->query($sql);
+		while($lin=$res->fetch_array())
+		{
+			echo "<option value=",$lin['Codigo_Jogo'],">",$lin['Nome_Jogo'],"</option>";
+			$a=$lin['Codigo_Jogo'];
+		}
+		echo "</select>";
+		?>
+		</div>
+		
+		<br>	
+		<div class="form-group">
+		<div class="container">
+		<div class='col-sm-5'><b>Data de Lançamento</b>
+		<input type="date" class="form-control" id="dat" name="dat"></div>
+		</div></div></div>
+	
+		<button type="submit" class="btn btn-secondary">adicionar Jogos na Plataforma</button>
+		<button type="reset" class="btn btn-secondary">Limpar</button>
+	
+		</form></center>
