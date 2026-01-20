@@ -4,5 +4,5 @@
 		$username = "if0_40948955";
 		$password = "zBHdSjgr60";
 		$database = "if0_40948955_XXX";
-	$lig= new mysqli ( $servername, $username, $password, $database) 
-	or die ("Problema na ligação ao servidor MYSQL");
+$lig= new mysqli ( $servername, $username, $password, $database);
+if ($lig->connect_error) die ("Problema na ligação ao servidor MYSQL: " . $lig->connect_error);

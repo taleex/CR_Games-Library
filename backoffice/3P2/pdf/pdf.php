@@ -4,8 +4,8 @@ $servername = "localhost";
 $username = "Jorge34798";
 $password = "Eslc2019";
 $database = "Jorge34798";
-$lig = new mysqli($servername, $username, $password, $database)
-    or die("Problema na ligação ao servidor MYSQL");
+$lig = new mysqli($servername, $username, $password, $database);
+if ($lig->connect_error) die("Problema na ligação ao servidor MYSQL: " . $lig->connect_error);
 
 require("tcpdf_include.php");
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
