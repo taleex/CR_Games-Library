@@ -31,7 +31,7 @@ switch ($pag) {
       $filtro1 = $p;
       $filtro = $p;
       $filtro = '%' . $filtro . '%';
-      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Nome_Jogo like upper('$filtro') order by Codigo_Jogo limit $ini, $tp";
+      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo limit $ini, $tp";
     } else if ($p == '') {
       $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor order by Codigo_Jogo limit $ini, $tp";
     }
@@ -42,7 +42,7 @@ switch ($pag) {
       $filtro1 = $p;
       $filtro = $p;
       $filtro = '%' . $filtro . '%';
-      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $pr and Nome_Jogo like upper('$filtro') order by Codigo_Jogo limit $ini, $tp";
+      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $pr and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo limit $ini, $tp";
     } else if ($p == '') {
       $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $pr order by Codigo_Jogo limit $ini, $tp";
     }
@@ -53,7 +53,7 @@ switch ($pag) {
       $filtro1 = $p;
       $filtro = $p;
       $filtro = '%' . $filtro . '%';
-      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Tipo_de_Jogo.CodTipoJogo = $Gr and Nome_Jogo like upper('$filtro') order by Codigo_Jogo limit $ini, $tp";
+      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Tipo_de_Jogo.CodTipoJogo = $Gr and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo limit $ini, $tp";
     } else if ($p == '') {
       $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Tipo_de_Jogo.CodTipoJogo = $Gr order by Codigo_Jogo limit $ini, $tp";
     }
@@ -64,7 +64,7 @@ switch ($pag) {
       $filtro1 = $p;
       $filtro = $p;
       $filtro = '%' . $filtro . '%';
-      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c and Nome_Jogo like upper('$filtro') order by Codigo_Jogo limit $ini, $tp";
+      $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo limit $ini, $tp";
     } else if ($p == '') {
       $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c order by Codigo_Jogo limit $ini, $tp";
     }
@@ -75,7 +75,7 @@ switch ($pag) {
       $filtro1 = $p;
       $filtro = $p;
       $filtro = '%' . $filtro . '%';
-      $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $Pl and Nome_Jogo like upper('$filtro') order by Codigo_Jogo limit $ini, $tp";
+      $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $Pl and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo limit $ini, $tp";
     } else if ($p == '') {
       $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $Pl order by Codigo_Jogo limit $ini, $tp";
     }

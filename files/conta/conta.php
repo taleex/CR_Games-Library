@@ -1,4 +1,4 @@
-<link href="'../../css/cc.css" rel="stylesheet">
+<link href="../../css/cc.css" rel="stylesheet">
 
 <?php
 if ((isset($_SESSION['codtipoUti']))) {

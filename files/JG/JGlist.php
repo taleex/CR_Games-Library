@@ -1,4 +1,4 @@
-<link href="'../../css/my.css" rel="stylesheet">
+<link href="../../css/my.css" rel="stylesheet">
 <?php
 $tp = 6;
 if (isset($_REQUEST['pag']))
@@ -14,7 +14,7 @@ if ((isset($_REQUEST['pesquisa'])) && ($_REQUEST['pesquisa'] != '')) {
 } else $filtro = '';
 
 if ($filtro != '')
-  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Nome_Jogo like upper('$filtro') order by Codigo_Jogo";
+  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo";
 else
   $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor order by Codigo_Jogo";
 
@@ -23,7 +23,7 @@ $nr = $res->num_rows;
 $qp = $nr / $tp + 1;
 
 if ($filtro != '')
-  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Nome_Jogo like upper('$filtro') order by Codigo_Jogo limit $ini, $tp";
+  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo limit $ini, $tp";
 else {
   $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor order by Codigo_Jogo limit $ini, $tp";
 }
@@ -109,7 +109,7 @@ if ($result = $lig->query($sql)) {
 
 
 <?php
-    mysqli_free_result($result1);
+    mysqli_free_result($result);
   } else {
     echo "Não foi encontrado resultados";
   }

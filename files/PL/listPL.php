@@ -5,7 +5,7 @@ $res = $lig->query($sql);
 $lin = $res->fetch_array();
 ?>
 
-<link href="'../../css/my.css" rel="stylesheet">
+<link href="../../css/my.css" rel="stylesheet">
 
 <?php
 
@@ -23,7 +23,7 @@ if ((isset($_REQUEST['pesquisa'])) && ($_REQUEST['pesquisa'] != '')) {
 } else $filtro = '';
 
 if ($filtro != '')
-  $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $co and Nome_Jogo like upper('$filtro')";
+  $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $co and Nome_Jogo like CONCAT('%',$filtro1,'%')";
 else
   $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $co order by Codigo_Jogo";
 
@@ -34,7 +34,7 @@ $qp = $nr / $tp + 1;
 $pagtd = 5;
 
 if ($filtro != '')
-  $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $co and Nome_Jogo like upper('$filtro') limit $ini, $tp";
+  $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $co and Nome_Jogo like CONCAT('%',$filtro1,'%') limit $ini, $tp";
 else {
   $sql = "select Jogos.*,Produtores.*,Plataforma.*,JogosPlataforma.* from Plataforma,JogosPlataforma,Jogos,Produtores where CodigoPlataforma=Codigo_Plataforma and CodigoJogo	= Codigo_Jogo and Produtores.Codigo_Produtor = Jogos.Codigo_Produtor and Codigo_Plataforma = $co limit $ini, $tp";
 }

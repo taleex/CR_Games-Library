@@ -1,4 +1,4 @@
-<link href="'../../css/my.css" rel="stylesheet">
+<link href="../../css/my.css" rel="stylesheet">
 <?php
 if ((isset($_SESSION['codtipoUti']))) {
   $tp = 6;
@@ -15,7 +15,7 @@ if ((isset($_SESSION['codtipoUti']))) {
   } else $filtro = '';
 
   if ($filtro != '')
-    $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c and Nome_Jogo like upper('$filtro') order by Codigo_Jogo";
+    $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo";
   else
     $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c order by Codigo_Jogo";
 
@@ -24,7 +24,7 @@ if ((isset($_SESSION['codtipoUti']))) {
   $qp = $nr / $tp + 1;
 
   if ($filtro != '')
-    $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c and Nome_Jogo like upper('$filtro') order by Codigo_Jogo limit $ini, $tp";
+    $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c and Nome_Jogo like CONCAT('%',$filtro1,'%') order by Codigo_Jogo limit $ini, $tp";
   else {
     $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.*,ListaDesejos.* from Tipo_de_Jogo,Produtores,Jogos,ListaDesejos where CodigoJogo = Codigo_Jogo and Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and codigUti = $c limit $ini, $tp";
   }

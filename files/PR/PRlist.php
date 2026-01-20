@@ -5,7 +5,7 @@ $res = $lig->query($sql);
 $lin = $res->fetch_array();
 ?>
 
-<link href="'../../css/my.css" rel="stylesheet">
+<link href="../../css/my.css" rel="stylesheet">
 
 <?php
 
@@ -23,7 +23,7 @@ if ((isset($_REQUEST['pesquisa'])) && ($_REQUEST['pesquisa'] != '')) {
 } else $filtro = '';
 
 if ($filtro != '')
-  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $co and Nome_Jogo like upper('$filtro')";
+  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $co and Nome_Jogo like CONCAT('%',$filtro1,'%')";
 else
   $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $co order by Codigo_Jogo";
 
@@ -34,7 +34,7 @@ $qp = $nr / $tp + 1;
 $pagtd = 2;
 
 if ($filtro != '')
-  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $co and Nome_Jogo like upper('$filtro') limit $ini, $tp";
+  $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $co and Nome_Jogo like CONCAT('%',$filtro1,'%') limit $ini, $tp";
 else {
   $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Produtores.Codigo_Produtor = $co limit $ini, $tp";
 }
