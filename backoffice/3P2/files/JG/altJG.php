@@ -18,6 +18,10 @@ $path = "./files/IMGJG/";
 $imgjg = $path . $NJfile;
 $orig = $_FILES['img']['tmp_name'];
 
+if (!is_dir($path)) {
+    mkdir($path, 0755, true);
+}
+
 echo "<script>console.log('Original path: " . addslashes($orig) . "');</script>";
 echo "<script>console.log('Target path: " . addslashes($imgjg) . "');</script>";
 echo "<script>console.log('Directory exists: " . (is_dir($path) ? 'yes' : 'no') . "');</script>";
