@@ -39,6 +39,7 @@ else
 
 	<!-- Main Stylesheet File -->
 	<link href="css/style.css" rel="stylesheet">
+	<link href="css/my.css" rel="stylesheet">
 
 	<!-- =======================================================
     Theme Name: TheEvent
