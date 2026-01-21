@@ -194,6 +194,11 @@
   text-transform: capitalize;
 }
 
+/* Modal Border Radius */
+.modal-content {
+  border-radius: 12px;
+}
+
 /* Mobile Nav Improvements */
 #mobile-nav {
   padding-top: 70px; /* Space for logo */
