@@ -15,7 +15,10 @@
 	$path="./files/IMGJG/";
 	$img=$path.$NJfile;
 	$orig=$_FILES['img']['tmp_name'];
-	echo "<script>console.log('".$orig."');</script>";
+	echo "<script>console.log('Original path: " . addslashes($orig) . "');</script>";
+	echo "<script>console.log('Target path: " . addslashes($img) . "');</script>";
+	echo "<script>console.log('Directory exists: " . (is_dir($path) ? 'yes' : 'no') . "');</script>";
+	echo "<script>console.log('Directory writable: " . (is_writable($path) ? 'yes' : 'no') . "');</script>";
 
 	if(move_uploaded_file($orig,$img)){
 		$sql = "insert into Jogos (Codigo_Produtor,CodTipoJogo,Nome_Jogo,descricao,Preco,DataLancamento,IMGjg) values ('$Codigo_Produtor','$CodTipoJogo','$Nome_Jogo','$descricao','$Preco','$DataLancamento','$img')";
