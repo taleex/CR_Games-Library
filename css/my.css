@@ -178,9 +178,15 @@
   margin: 8px 0;
 }
 
-/* Profile Picture Rounded */
+/* Profile Picture Rounded and Positioning */
 .dropdown-toggle img {
   border-radius: 50%;
+  vertical-align: middle;
+}
+
+/* Dropdown Button Padding */
+.dropdown-toggle {
+  padding: 8px 12px;
 }
 
 /* Username Capitalize */
