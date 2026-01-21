@@ -203,6 +203,11 @@
   border-radius: 12px 12px 0 0;
 }
 
+/* Games Cards Border Radius */
+.speaker {
+  border-radius: 12px;
+}
+
 /* Mobile Nav Improvements */
 #mobile-nav {
   padding-top: 70px; /* Space for logo */
