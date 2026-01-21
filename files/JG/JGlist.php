@@ -1,4 +1,4 @@
-<link href="@/css/my.css" rel="stylesheet">
+<link href="../../css/my.css" rel="stylesheet">
 <?php
 $tp = 6;
 if (isset($_REQUEST['pag']))
