@@ -218,14 +218,21 @@
 }
 
 #mobile-nav .dropdown-menu {
-  width: calc(100vw - 40px);
-  margin-left: -20px;
+  width: 260px;
+  margin-left: -15px;
   padding: 8px 0;
+  z-index: 999;
 }
 
 #mobile-nav .dropdown-item {
-  padding: 10px 20px;
+  padding: 10px 15px;
   text-align: left;
+}
+
+#mobile-nav .dropdown-toggle {
+  font-size: 14px;
+  padding: 8px 12px;
+  white-space: nowrap;
 }
 
 /* Responsive Media Queries for JGlist */
