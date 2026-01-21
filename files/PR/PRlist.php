@@ -114,7 +114,7 @@ if ($result = $lig->query($sql)) {
       </section>
     </section>
   <?php
-    mysqli_free_result($result1);
+    mysqli_free_result($result);
   } else {
     $sql1 = "select Produtores.* from Produtores where Codigo_Produtor = $co";
     $res1 = $lig->query($sql1);
