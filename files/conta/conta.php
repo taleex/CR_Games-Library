@@ -372,11 +372,11 @@ if ((isset($_SESSION['codtipoUti']))) {
 					<!-- Foto de Utilizador -->
 					<div class="col-lg-4 order-lg-1 text-center"><br>
 						<img src="<?php echo  $_SESSION['foto'] ?>" width='300' height='200' class="mx-auto img-fluid img-circle d-block" alt="avatar">
-						<form enctype="multipart/form-data" action="index.php?cmd=ft" method="post" onsubmit="return checkFile()">
+						<form enctype="multipart/form-data" action="index.php?cmd=ft" method="post" id="uploadForm">
 							<label class="custom-file">
 								<input type="file" id="file1" class="custom-file-input" name="img">
 								<span class="custom-file-control" style="color:white">Escolha a foto</span><br>
-								<button class="btn btn-danger" type="submit">Carregar</button>
+								<button class="btn btn-danger" type="button" onclick="if(checkFile()) { document.getElementById('uploadForm').submit(); }">Carregar</button>
 								<a href="index.php?cmd=delft" class="btn btn-secondary">Apagar</a>
 							</label>
 						</form>
