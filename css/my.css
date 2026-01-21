@@ -238,11 +238,15 @@
   text-align: left;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 #mobile-nav .dropdown-toggle b {
   flex: 1;
+}
+
+#mobile-nav .dropdown-toggle img {
+  margin-left: auto;
+  margin-right: 0;
 }
 
 /* Responsive Media Queries for JGlist */
