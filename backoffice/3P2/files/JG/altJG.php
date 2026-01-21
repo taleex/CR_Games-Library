@@ -18,6 +18,11 @@ $path = "./files/IMGJG/";
 $imgjg = $path . $NJfile;
 $orig = $_FILES['img']['tmp_name'];
 
+echo "<script>console.log('Original path: " . addslashes($orig) . "');</script>";
+echo "<script>console.log('Target path: " . addslashes($imgjg) . "');</script>";
+echo "<script>console.log('Directory exists: " . (is_dir($path) ? 'yes' : 'no') . "');</script>";
+echo "<script>console.log('Directory writable: " . (is_writable($path) ? 'yes' : 'no') . "');</script>";
+
 if ($_FILES["img"]["name"] == null) {
 	$sql = "update Jogos set Codigo_Produtor = '$Codigo_Produtor', CodTipoJogo = '$CodTipoJogo', Nome_Jogo = '$Nome_Jogo', DataLancamento = '$DataLancamento', descricao = '$descricao', Preco = '$Preco' where Codigo_Jogo='$Codigo_Jogo'";
 	$lig->query($sql) or die("ERRO: alteração da tabela Jogos");
