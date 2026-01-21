@@ -231,10 +231,14 @@
 
 #mobile-nav .dropdown-toggle {
   font-size: 14px;
-  padding: 10px 15px;
+  padding: 8px 7px;
   white-space: nowrap;
-  width: 100%;
+  width: calc(100% - 37px);
+  margin-left: 15px;
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Responsive Media Queries for JGlist */
