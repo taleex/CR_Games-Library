@@ -25,7 +25,7 @@ if ($_FILES["img"]["name"] == null) {
 	echo "<meta http-equiv=refresh content=1;URL=index.php?cmd=BGJG&cod=$Codigo_Jogo&a=$a>";
 } else {
 
-	if (copy($orig, $imgjg)) {
+	if (move_uploaded_file($orig, $imgjg)) {
 		$sql = "update Jogos set Codigo_Produtor = '$Codigo_Produtor', CodTipoJogo = '$CodTipoJogo', Nome_Jogo = '$Nome_Jogo', DataLancamento = '$DataLancamento', descricao = '$descricao', Preco = '$Preco', IMGjg='$imgjg' where Codigo_Jogo='$Codigo_Jogo'";
 		$lig->query($sql) or die("ERRO: alteração da tabela Jogos");
 		echo "Alteração efetuada com sucesso!";

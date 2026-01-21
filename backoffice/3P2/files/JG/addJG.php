@@ -17,7 +17,7 @@
 	$orig=$_FILES['img']['tmp_name'];
 	echo "<script>console.log('".$orig."');</script>";
 
-	if(copy($orig,$img)){
+	if(move_uploaded_file($orig,$img)){
 		$sql = "insert into Jogos (Codigo_Produtor,CodTipoJogo,Nome_Jogo,descricao,Preco,DataLancamento,IMGjg) values ('$Codigo_Produtor','$CodTipoJogo','$Nome_Jogo','$descricao','$Preco','$DataLancamento','$img')";
 		$lig->query($sql) or die("ERRO:Inserção na tabela Jogos");
 		echo "<meta http-equiv=refresh content=1;URL=index.php?cmd=BGJG&n=$Nome_Jogo&p=$Codigo_Produtor&t=$CodTipoJogo&a=$a>";
