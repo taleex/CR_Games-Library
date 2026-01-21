@@ -439,15 +439,10 @@ if ((isset($_SESSION['codtipoUti']))) {
 	echo "<meta http-equiv=refresh content=10;URL=index.php?cmd=home>";
 } ?>
 
-<!-- Toast for file validation -->
-<div class="toast bg-danger" id="fileToast" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;" data-delay="3000" data-autohide="true">
-    <div class="toast-header">
-        <strong class="mr-auto text-white">Erro</strong>
-        <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">&times;</button>
-    </div>
-    <div class="toast-body text-white">
-        Por favor, carregue uma imagem antes de submeter.
-    </div>
+<!-- Alert for file validation -->
+<div class="alert alert-danger" id="fileAlert" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: none; width: 300px;">
+    <button type="button" class="close" onclick="$('#fileAlert').hide();">&times;</button>
+    <strong>Erro:</strong> Por favor, carregue uma imagem antes de submeter.
 </div>
 
 <!-- Adicionar ou remover o jogo da lista de desejos -->
@@ -458,7 +453,7 @@ if ((isset($_SESSION['codtipoUti']))) {
 function checkFile() {
     var fileInput = document.getElementById('file1');
     if (fileInput.files.length === 0) {
-        $('#fileToast').toast('show');
+        $('#fileAlert').show();
         return false;
     }
     return true;
