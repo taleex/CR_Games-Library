@@ -440,7 +440,7 @@ if ((isset($_SESSION['codtipoUti']))) {
 } ?>
 
 <!-- Toast for file validation -->
-<div class="toast" id="fileToast" style="position: fixed; top: 20px; right: 20px; z-index: 9999;" data-delay="3000">
+<div class="toast bg-warning" id="fileToast" style="position: fixed; top: 20px; right: 20px; z-index: 9999;" data-delay="3000">
     <div class="toast-header">
         <strong class="mr-auto">Aviso</strong>
         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
