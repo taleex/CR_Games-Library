@@ -137,5 +137,12 @@ while ($row = $result->fetch_array()) {
   echo "<p><a href='index.php?cmd=PRlist&cod=" . $row['Codigo_Produtor'] . "'>" . $row['Nome_Produtor'] . "</a></p>
               </div></div></div>";
 }
+echo '</div></div>';
+
+echo '<center>';
+for ($i = 1; $i < $qp; $i++) {
+  echo "<b><a href='javascript:void(0);' onclick='filTodosJogos(document.getElementById(\"pesq\"), $c, $pag, $i);'>&nbsp;$i&nbsp;</a></b>";
+}
+echo '</center>';
 ?>
 <script type="text/javascript" src="js/fil.js"></script>
