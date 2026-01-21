@@ -199,6 +199,10 @@
   border-radius: 12px;
 }
 
+.Modal {
+  border-radius: 12px 12px 0 0;
+}
+
 /* Mobile Nav Improvements */
 #mobile-nav {
   padding-top: 70px; /* Space for logo */
