@@ -203,6 +203,29 @@
   border-radius: 12px 12px 0 0;
 }
 
+/* Toast Styling */
+.toast {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+}
+
+.toast.bg-warning {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+}
+
+.toast-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 12px 12px 0 0;
+}
+
+.toast-body {
+  padding: 12px;
+  color: #856404;
+}
+
 /* Games Cards Border Radius */
 .speaker {
   border-radius: 12px;
