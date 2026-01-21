@@ -72,8 +72,8 @@ else
 
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li class="menu-active"><a href="index.php?cmd=home">Home</a></li>
-					<li><a href="index.php?cmd=JGlist">Jogos</a></li>
+					<li class="<?php echo ($cmd == 'home' || $cmd == 'indx') ? 'menu-active' : ''; ?>"><a href="index.php?cmd=home">Home</a></li>
+					<li class="<?php echo ($cmd == 'JGlist' || $cmd == 'JGinf' || $cmd == 'TJlist') ? 'menu-active' : ''; ?>"><a href="index.php?cmd=JGlist">Jogos</a></li>
 
 					<?php if ((isset($_SESSION['codtipoUti']))) {
 
