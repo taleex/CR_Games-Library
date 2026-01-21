@@ -12,7 +12,7 @@
 		$name = $NomeJogo;
 
 	$NJfile=$name.".".$extension;
-	$path="IMGJG/";
+	$path="./files/IMGJG/";
 	$img=$path.$NJfile;
 	$orig=$_FILES['img']['tmp_name'];
 

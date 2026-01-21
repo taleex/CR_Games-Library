@@ -14,7 +14,7 @@ $extension = pathinfo($_FILES["img"]["name"], PATHINFO_EXTENSION);
 $name = $NomeJogo;
 
 $NJfile = $name . "." . $extension;
-$path = "IMGJG/";
+$path = "./files/IMGJG/";
 $imgjg = $path . $NJfile;
 $orig = $_FILES['img']['tmp_name'];
 
