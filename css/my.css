@@ -218,8 +218,8 @@
 }
 
 #mobile-nav .dropdown-menu {
-  width: 260px;
-  margin-left: -15px;
+  width: calc(100% - 37px);
+  margin-left: 15px;
   padding: 8px 0;
   z-index: 999;
 }
@@ -239,6 +239,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+#mobile-nav .dropdown-toggle b {
+  flex: 1;
 }
 
 /* Responsive Media Queries for JGlist */
