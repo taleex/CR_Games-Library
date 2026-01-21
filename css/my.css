@@ -156,6 +156,38 @@
   color: #fff;
 }
 
+/* Navbar Dropdown Improvements */
+.dropdown-menu {
+  min-width: 100%;
+  padding: 8px 0;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  color: #f82249;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+  color: #f82249;
+}
+
+.dropdown-divider {
+  margin: 8px 0;
+}
+
+/* Profile Picture Rounded */
+.dropdown-toggle img {
+  border-radius: 50%;
+}
+
+/* Username Capitalize */
+.dropdown-toggle b {
+  text-transform: capitalize;
+}
+
 /* Responsive Media Queries for JGlist */
 @media (max-width: 768px) {
   #bc h1 {
