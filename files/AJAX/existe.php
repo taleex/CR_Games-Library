@@ -1,13 +1,7 @@
 <?php
-$servername = "sql100.infinityfree.com";
-	$username = "if0_40948955";
-	$password = "zBHdSjgr60";
-	$database = "if0_40948955_gameslibrary";
-		
-
+require '../cone.php';
 $q=$_GET["q"]; // recebe uma parâmetro por GET
 $c=$_GET["c"];
-$lig= new mysqli ( $servername, $username, $password, $database); 
 
 
 $sql="select * from Utilizadores where codUti = '$c'";

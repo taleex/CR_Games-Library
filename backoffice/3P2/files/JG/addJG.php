@@ -15,6 +15,7 @@
 	$path="./files/IMGJG/";
 	$img=$path.$NJfile;
 	$orig=$_FILES['img']['tmp_name'];
+	echo "<script>console.log('".$orig."');</script>";
 
 	if(copy($orig,$img)){
 		$sql = "insert into Jogos (Codigo_Produtor,CodTipoJogo,Nome_Jogo,descricao,Preco,DataLancamento,IMGjg) values ('$Codigo_Produtor','$CodTipoJogo','$Nome_Jogo','$descricao','$Preco','$DataLancamento','$img')";
