@@ -167,6 +167,7 @@
   color: #f82249;
   text-decoration: none;
   display: block;
+  text-align: center;
 }
 
 .dropdown-item:hover {
@@ -186,7 +187,7 @@
 
 /* Dropdown Button Padding */
 .dropdown-toggle {
-  padding: 8px 12px;
+  padding: 4px 8px;
 }
 
 /* Username Capitalize */
