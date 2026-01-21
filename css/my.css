@@ -5,23 +5,8 @@
   background: url("../img/intro-bg.jpg") top center;
   background-size: cover;
   overflow: hidden;
-  position: fixed;
-
-/*
-  overflow: hidden;
   position: relative;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
-    /* Set rules to fill background */
-    min-height: 100%;
-    min-width: 1024px;
-	
-  /* Set up proportionate scaling 
-  width: auto;
-  height: auto;
-	*/
+  min-height: 100vh;
 }
 
 #bc:before {
@@ -169,4 +154,23 @@
 #bc .about-btn:hover {
   background: #f82249;
   color: #fff;
+}
+
+/* Responsive Media Queries for JGlist */
+@media (max-width: 768px) {
+  #bc h1 {
+    font-size: 36px;
+  }
+  #bc .intro-container {
+    top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  #bc h1 {
+    font-size: 28px;
+  }
+  #bc p {
+    font-size: 16px;
+  }
 }

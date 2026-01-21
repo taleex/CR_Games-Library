@@ -54,7 +54,7 @@ if ($result = $lig->query($sql)) {
           <br>
 
           <center>
-              <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mx-auto">
                 <input type="text" class="form-control" id="pesq" name="pesquisa" onInput="return filTodosJogos(this,<?php echo $c; ?>,<?php echo $pagtd;?>);">
               </div>
               <br>
@@ -79,7 +79,7 @@ if ($result = $lig->query($sql)) {
             while ($row = $result->fetch_array()) {
             ?>
 
-              <div class="col-lg-4 col-md-4 col-sm-8">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="speaker">
                   <?php echo "<img src=" . 'backoffice/3P2/' . $row['IMGjg'] . " height='200' width='350' alt='Speaker 1'/>
               <div class='details' style='background-color: rgba(255, 0, 0, 0.5);'>";
