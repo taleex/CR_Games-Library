@@ -13,6 +13,10 @@ $path = "./files/IMGBG/";
 $img = $path . $NJfile;
 $orig = $_FILES['img']['tmp_name'];
 
+if (!is_dir($path)) {
+    mkdir($path, 0755, true);
+}
+
 if ($_FILES["img"]["name"] == null) {
 	if ($a == "1") {
 		echo "<meta http-equiv=refresh content=1;URL=index.php?cmd=JOGlist>";
