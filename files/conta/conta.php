@@ -372,7 +372,7 @@ if ((isset($_SESSION['codtipoUti']))) {
 					<!-- Foto de Utilizador -->
 					<div class="col-lg-4 order-lg-1 text-center"><br>
 						<img src="<?php echo  $_SESSION['foto'] ?>" width='300' height='200' class="mx-auto img-fluid img-circle d-block" alt="avatar">
-						<form enctype="multipart/form-data" action="index.php?cmd=ft" method="post">
+						<form enctype="multipart/form-data" action="index.php?cmd=ft" method="post" onsubmit="return checkFile()">
 							<label class="custom-file">
 								<input type="file" id="file1" class="custom-file-input" name="img">
 								<span class="custom-file-control" style="color:white">Escolha a foto</span><br>
@@ -443,3 +443,13 @@ if ((isset($_SESSION['codtipoUti']))) {
 <script type="text/javascript" src="js/fil.js"></script>
 <script src="js/sug.js"></script>
 <script src="js/alt.js"></script>
+<script>
+function checkFile() {
+    var fileInput = document.getElementById('file1');
+    if (fileInput.files.length === 0) {
+        alert('Please upload a picture before submitting.');
+        return false;
+    }
+    return true;
+}
+</script>
