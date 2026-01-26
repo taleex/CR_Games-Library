@@ -203,6 +203,25 @@
   border-radius: 12px 12px 0 0;
 }
 
+/* Fix scrollbar issue when modal is open */
+body.modal-open {
+  overflow: hidden;
+  padding-right: 0;
+}
+
+.modal-open .modal {
+  padding-right: 0;
+}
+
+/* Ensure proper modal backdrop styling */
+.modal-backdrop {
+  z-index: 1040;
+}
+
+.modal {
+  z-index: 1050;
+}
+
 /* Registration Modal Styling - Match Login Modal Style */
 #reg .modal-header {
   background-color: #f82249;
