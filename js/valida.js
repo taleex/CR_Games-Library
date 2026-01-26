@@ -291,24 +291,28 @@ document.getElementById("regLogin").addEventListener("input", function () {
   this.classList.remove("is-invalid");
   this.classList.remove("is-valid");
   document.getElementById("loginError").style.display = "none";
+  document.getElementById("submitError").style.display = "none";
 });
 
 document.getElementById("regEmail").addEventListener("input", function () {
   this.classList.remove("is-invalid");
   this.classList.remove("is-valid");
   document.getElementById("emailError").style.display = "none";
+  document.getElementById("submitError").style.display = "none";
 });
 
 document.getElementById("regName").addEventListener("input", function () {
   this.classList.remove("is-invalid");
   this.classList.remove("is-valid");
   document.getElementById("nameError").style.display = "none";
+  document.getElementById("submitError").style.display = "none";
 });
 
 document.getElementById("regPassword").addEventListener("input", function () {
   this.classList.remove("is-invalid");
   this.classList.remove("is-valid");
   document.getElementById("passwordError").style.display = "none";
+  document.getElementById("submitError").style.display = "none";
 });
 
 document
@@ -317,6 +321,7 @@ document
     this.classList.remove("is-invalid");
     this.classList.remove("is-valid");
     document.getElementById("confirmPasswordError").style.display = "none";
+    document.getElementById("submitError").style.display = "none";
   });
 
 // Clear registration form when modal is closed
