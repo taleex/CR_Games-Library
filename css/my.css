@@ -204,6 +204,10 @@
 }
 
 /* Registration Modal Styling */
+#reg .modal-dialog {
+  max-width: 900px;
+}
+
 #reg .modal-header {
   background-color: #f82249;
   color: white;
@@ -256,8 +260,9 @@
 }
 
 #reg .form-control.is-invalid {
-  border-color: #dc3545;
+  border: 3px solid #dc3545 !important;
   background-color: #fff5f5;
+  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.2) !important;
 }
 
 #reg .form-control.is-valid {
@@ -322,6 +327,10 @@
 
 /* Responsive Adjustments for Registration Modal */
 @media (max-width: 768px) {
+  #reg .modal-dialog {
+    max-width: 95%;
+  }
+  
   #reg .modal-body {
     padding: 20px;
   }
@@ -338,11 +347,16 @@
     padding: 10px 20px;
     font-size: 14px;
   }
+  
+  #reg .row .col-md-6 {
+    margin-bottom: 15px;
+  }
 }
 
 @media (max-width: 576px) {
   #reg .modal-dialog {
     margin: 10px;
+    max-width: 98%;
   }
   
   #reg .modal-content {
@@ -356,6 +370,15 @@
   
   #reg .modal-footer {
     border-radius: 0 0 8px 8px;
+  }
+  
+  #reg .row {
+    flex-direction: column;
+  }
+  
+  #reg .col-md-6 {
+    width: 100%;
+    margin-bottom: 15px;
   }
 }
 

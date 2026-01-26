@@ -252,7 +252,7 @@ else
 
 					<!-- Modal Registar -->
 	<div class="modal fade" id="reg" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="Modal">
@@ -263,46 +263,51 @@ else
 				</div>
 				<div class="modal-body">
 					<form action="index.php?cmd=regi" method="post" id="registerForm">
-						<div class="form-group">
-							<label for="utiLog"><b>Login</b></label>
-							<input type="text" id="utiLog" name="utiLog" placeholder="GamerPT2005" class="form-control" onblur="validateLogin(this)">
-							<small id="loginError" class="form-text text-danger" style="display: none;"></small>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="utiLog"><b>Login</b></label>
+									<input type="text" id="utiLog" name="utiLog" placeholder="GamerPT2005" class="form-control" onblur="validateLogin(this)">
+									<small id="loginError" class="form-text text-danger" style="display: none;"></small>
+								</div>
+
+								<div class="form-group">
+									<label for="email"><b>Email</b></label>
+									<input type="email" class="form-control" name="email" id="email" placeholder="Introduza o E-mail" onblur="validateEmail(this)">
+									<small id="emailError" class="form-text text-danger" style="display: none;"></small>
+								</div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="utinome"><b>Nome do utilizador (Primeiro e Último)</b></label>
+									<input type="text" class="form-control" id="utinome" name="utinome" placeholder="Adolfo Lenin" onblur="validateName(this)">
+									<small id="nameError" class="form-text text-danger" style="display: none;"></small>
+								</div>
+
+								<div class="form-group">
+									<label for="nasc"><b>Data de nascimento</b></label>
+									<input type="date" class="form-control" id="nasc" name="nasc">
+								</div>
+							</div>
 						</div>
 
-						<div class="form-group">
-							<label for="pass"><b>Password</b></label>
-							<input type="password" class="form-control" id="pass" name="pass" oninput="validatePassword(this)">
-							<small id="passwordError" class="form-text text-danger" style="display: none;"></small>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm_password"><b>Repita a Password</b></label>
-							<input type="password" class="form-control" id="confirm_password" name="confirm_password" oninput="validateConfirmPassword(this)">
-							<small id="confirmPasswordError" class="form-text text-danger" style="display: none;"></small>
-						</div>
-
-						<div class="form-group">
-							<label for="utinome"><b>Nome do utilizador (Primeiro e Último)</b></label>
-							<input type="text" class="form-control" id="utinome" name="utinome" placeholder="Adolfo Lenin" onblur="validateName(this)">
-							<small id="nameError" class="form-text text-danger" style="display: none;"></small>
-						</div>
-
-						<div class="form-group">
-							<label for="nasc"><b>Data de nascimento</b></label>
-							<input type="date" class="form-control" id="nasc" name="nasc">
-						</div>
-
-						<div class="form-group">
-							<label for="email"><b>Email</b></label>
-							<input type="email" class="form-control" name="email" id="email" placeholder="Introduza o E-mail" onblur="validateEmail(this)">
-							<small id="emailError" class="form-text text-danger" style="display: none;"></small>
-						</div>
-						
-						<div class='form-group'>
-							<label for="prod"><b>Pertencente a que Produtora</b></label>
-							<select class='form-control prod' name='prod' id="prod">
-								<option selected='selected'>--Escolha o Tipo de Utilizador--</option>
-							</select>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="pass"><b>Password</b></label>
+									<input type="password" class="form-control" id="pass" name="pass" oninput="validatePassword(this)">
+									<small id="passwordError" class="form-text text-danger" style="display: none;"></small>
+								</div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="confirm_password"><b>Repita a Password</b></label>
+									<input type="password" class="form-control" id="confirm_password" name="confirm_password" oninput="validateConfirmPassword(this)">
+									<small id="confirmPasswordError" class="form-text text-danger" style="display: none;"></small>
+								</div>
+							</div>
 						</div>
 
 						<div id="submitError" class="alert alert-danger" style="display: none;"></div>
