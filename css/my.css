@@ -203,6 +203,162 @@
   border-radius: 12px 12px 0 0;
 }
 
+/* Registration Modal Styling */
+#reg .modal-header {
+  background-color: #f82249;
+  color: white;
+  border-radius: 12px 12px 0 0;
+  padding: 20px 30px;
+}
+
+#reg .modal-header h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+#reg .modal-body {
+  padding: 30px;
+  background-color: #f8f9fa;
+}
+
+#reg .modal-footer {
+  padding: 20px 30px;
+  border-top: none;
+  background-color: #f8f9fa;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Form Styling for Registration */
+#reg .form-group {
+  margin-bottom: 20px;
+}
+
+#reg label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+#reg .form-control {
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+#reg .form-control:focus {
+  border-color: #f82249;
+  box-shadow: 0 0 0 3px rgba(248, 34, 73, 0.1);
+  outline: none;
+}
+
+#reg .form-control.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+#reg .form-control.is-valid {
+  border-color: #28a745;
+  background-color: #f8fff9;
+}
+
+#reg .form-text.text-danger {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #dc3545;
+  font-weight: 500;
+}
+
+/* Button Styling for Registration Modal */
+#reg .btn-default {
+  background-color: #f82249;
+  border-color: #f82249;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+#reg .btn-default:hover {
+  background-color: #e51e42;
+  border-color: #e51e42;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(248, 34, 73, 0.3);
+}
+
+#reg .btn-danger {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+#reg .btn-danger:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+  transform: translateY(-2px);
+}
+
+/* Alert Styling for Form Errors */
+#reg .alert-danger {
+  border-radius: 8px;
+  border: none;
+  background-color: #fff5f5;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Adjustments for Registration Modal */
+@media (max-width: 768px) {
+  #reg .modal-body {
+    padding: 20px;
+  }
+  
+  #reg .modal-footer {
+    padding: 15px 20px;
+  }
+  
+  #reg .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  #reg .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  #reg .modal-dialog {
+    margin: 10px;
+  }
+  
+  #reg .modal-content {
+    border-radius: 8px;
+  }
+  
+  #reg .modal-header {
+    padding: 15px 20px;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  #reg .modal-footer {
+    border-radius: 0 0 8px 8px;
+  }
+}
+
 /* Toast Styling */
 .toast {
   border-radius: 12px;

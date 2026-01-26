@@ -4,7 +4,7 @@ if ($lig->connect_error) {
     die("Connection failed: " . $lig->connect_error);
 }
 
-		 $tipu=$_REQUEST['tipu'];
+		 $tipu = 12; // Default to normal user type
 		 $utiLog=$_REQUEST['utiLog'];
 		 $pass=$_REQUEST['pass'];
 		 $utinome=$_REQUEST['utinome'];

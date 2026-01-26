@@ -250,7 +250,7 @@ else
 	</div>
 
 
-	<!-- Modal Registar -->
+					<!-- Modal Registar -->
 	<div class="modal fade" id="reg" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -262,70 +262,57 @@ else
 					</div>
 				</div>
 				<div class="modal-body">
-					<form action="index.php?cmd=regi" method="post" onsubmit="return valida();">
+					<form action="index.php?cmd=regi" method="post" id="registerForm">
 						<div class="form-group">
-							<div class="col-sm-13"><b>Tipo de utilizador</b>
-								<select class="form-control tipu" id="tipuui" name="tipu" required>
-									<option>Escolher...</option>
-									<?php
-									$sql3 = "select * from Tipo_de_utilizador where dsg not like'Adm%' and dsg not like'Prod%'";
-									$res3 = $lig->query($sql3);
-									while ($lin3 = $res3->fetch_array()) {
-										$id = $lin3['codtipoUti'];
-										$data = $lin3['dsg'];
-										echo "<option value=", $lin3['codtipoUti'], ">", $lin3['dsg'], "</option>";
-									}
-									?>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group"><b>Login</b><br>
-							<input type="text" id="utiLog" name="utiLog" placeholder="GamerPT2005" onblur="return existe(this);" class="form-control" required>
-							<div class="msg-erro" id='txtlogin'></div>
-						</div>
-
-						<div class="form-group"><b>Password</b><br>
-							<input type="password" class="form-control" id="pass" name="pass" onChange="PasswordMatch(this);" required></input>
-							<span class='msg-erro msg-pass'></span>
-						</div>
-
-						<div class="form-group"><b>Repita a Password</b><br>
-							<input type="password" class="form-control" id="confirm_password" name="confirm_password" onChange="PasswordMatch(this);" required>
-							<span class='msg-erro msg-cpass'></span>
+							<label for="utiLog"><b>Login</b></label>
+							<input type="text" id="utiLog" name="utiLog" placeholder="GamerPT2005" class="form-control" onblur="validateLogin(this)">
+							<small id="loginError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 
 						<div class="form-group">
-							<label for="formGroupExampleInput"><b>Nome do utlizador (Primeiro e Ultimo)</b></label>
-							<input type="text" class="form-control" id="utinome" name="utinome" placeholder="Adolfo Lenin" onblur="return validaNom(this);" required>
-							<span class='msg-erro msg-nome'></span>
+							<label for="pass"><b>Password</b></label>
+							<input type="password" class="form-control" id="pass" name="pass" oninput="validatePassword(this)">
+							<small id="passwordError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 
 						<div class="form-group">
-							<b>Data de nascimento</b>
-							<input type="date" class="form-control" id="nasc" name="nasc"></div>
+							<label for="confirm_password"><b>Repita a Password</b></label>
+							<input type="password" class="form-control" id="confirm_password" name="confirm_password" oninput="validateConfirmPassword(this)">
+							<small id="confirmPasswordError" class="form-text text-danger" style="display: none;"></small>
+						</div>
 
-						<div class="form-group"><b>Email</b>
-							<input type="email" class="form-control" name="email" id="email" placeholder="Introduza o E-mail" onblur="return validaMail(this);">
-							<span class='msg-erro' id='txtemail'></span>
+						<div class="form-group">
+							<label for="utinome"><b>Nome do utilizador (Primeiro e Último)</b></label>
+							<input type="text" class="form-control" id="utinome" name="utinome" placeholder="Adolfo Lenin" onblur="validateName(this)">
+							<small id="nameError" class="form-text text-danger" style="display: none;"></small>
+						</div>
+
+						<div class="form-group">
+							<label for="nasc"><b>Data de nascimento</b></label>
+							<input type="date" class="form-control" id="nasc" name="nasc">
+						</div>
+
+						<div class="form-group">
+							<label for="email"><b>Email</b></label>
+							<input type="email" class="form-control" name="email" id="email" placeholder="Introduza o E-mail" onblur="validateEmail(this)">
+							<small id="emailError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 						
-					<div class='form-group'>
-						<b>Pertencente a que Produtora</b>
-						<select class='form-control prod' name='prod'>
-							<option selected='selected'>--Escolha o Tipo de Utilizador--</option>
-						</select>
-					</div>
+						<div class='form-group'>
+							<label for="prod"><b>Pertencente a que Produtora</b></label>
+							<select class='form-control prod' name='prod' id="prod">
+								<option selected='selected'>--Escolha o Tipo de Utilizador--</option>
+							</select>
+						</div>
 
-				<span class='msg-erro msg-registo'></span>
-				<div class="modal-footer">
-					<button class='btn btn-default' style='margin:5px;' type='submit'>Registar</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						<div id="submitError" class="alert alert-danger" style="display: none;"></div>
+						
+						<div class="modal-footer">
+							<button class='btn btn-default' style='margin:5px;' type='submit'>Registar</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</form>
 				</div>
-				</form>
-				</div>
-
-
 			</div>
 		</div>
 	</div>
