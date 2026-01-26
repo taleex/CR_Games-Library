@@ -221,6 +221,15 @@ document
       submitError.textContent =
         "Por favor, corrija os erros no formulário antes de submeter.";
       submitError.style.display = "block";
+
+      // Add shake animation to highlight invalid fields
+      const invalidFields = this.querySelectorAll(".is-invalid");
+      invalidFields.forEach((field) => {
+        field.style.animation = "none";
+        field.offsetHeight; // trigger reflow
+        field.style.animation = "shake 0.5s ease-in-out";
+      });
+
       return false;
     }
 
@@ -263,3 +272,60 @@ document.getElementById("login").addEventListener("input", function () {
 document.getElementById("password").addEventListener("input", function () {
   this.classList.remove("is-invalid");
 });
+
+// Login form validation function
+function validateLoginForm() {
+  const loginInput = document.getElementById("login");
+  const passwordInput = document.getElementById("password");
+  let isValid = true;
+
+  // Validate login field
+  if (loginInput.value.trim() === "") {
+    loginInput.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    loginInput.classList.remove("is-invalid");
+  }
+
+  // Validate password field
+  if (passwordInput.value.trim() === "") {
+    passwordInput.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    passwordInput.classList.remove("is-invalid");
+  }
+
+  return isValid;
+}
+
+// Add form submission validation for login
+document
+  .getElementById("login")
+  .closest("form")
+  .addEventListener("submit", function (e) {
+    if (!validateLoginForm()) {
+      e.preventDefault();
+      // Add shake animation to highlight invalid fields
+      const invalidFields = this.querySelectorAll(".is-invalid");
+      invalidFields.forEach((field) => {
+        field.style.animation = "none";
+        field.offsetHeight; // trigger reflow
+        field.style.animation = "shake 0.5s ease-in-out";
+      });
+      return false;
+    }
+    return true;
+  });
+
+// Add keyframes for shake animation
+const style = document.createElement("style");
+style.textContent = `
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+`;
+document.head.appendChild(style);
