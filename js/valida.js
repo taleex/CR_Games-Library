@@ -21,6 +21,8 @@ function validateEmail(input) {
   errorElement.style.display = "none";
 
   if (email === "") {
+    showError(input, errorElement, "Campo obrigatório");
+    validationState.email = false;
     return;
   }
 
@@ -53,6 +55,8 @@ function validateLogin(input) {
   errorElement.style.display = "none";
 
   if (login.length === 0) {
+    showError(input, errorElement, "Campo obrigatório");
+    validationState.login = false;
     return;
   }
 
@@ -117,6 +121,8 @@ function validateName(input) {
   errorElement.style.display = "none";
 
   if (name === "") {
+    showError(input, errorElement, "Campo obrigatório");
+    validationState.name = false;
     return;
   }
 
@@ -143,6 +149,8 @@ function validatePassword(input) {
   errorElement.style.display = "none";
 
   if (password === "") {
+    showError(input, errorElement, "Campo obrigatório");
+    validationState.password = false;
     return;
   }
 
@@ -175,6 +183,8 @@ function validateConfirmPassword(input) {
   errorElement.style.display = "none";
 
   if (confirmPassword === "") {
+    showError(input, errorElement, "Campo obrigatório");
+    validationState.confirmPassword = false;
     return;
   }
 
