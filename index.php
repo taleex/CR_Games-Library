@@ -97,8 +97,8 @@ else
 						<?php } ?>
 						<li>
 							<div class='dropdown'>
-								<button style='background-color:#d12141; color:#ffffff;' class='btn dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-									<b><a></a><?php echo $_SESSION['login'] ?></b><a style='margin:3px;'></a><img src="<?php echo  $_SESSION['foto'] ?>" width='30' height='30'>
+								<button style='background-color:#d12141; color:#ffffff; padding: 8px 16px; font-size: 14px; border: none; border-radius: 4px;' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+									<b><?php echo $_SESSION['login'] ?></b><span style='margin-left:8px;'></span><img src="<?php echo  $_SESSION['foto'] ?>" width='24' height='24' style='vertical-align: middle;'>
 								</button>
 								<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
 									<a class='dropdown-item' href='index.php?cmd=conta' style='color:#f82249;'>A minha Conta</a>

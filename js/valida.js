@@ -23,6 +23,7 @@ function validateEmail(input) {
   if (email === "") {
     showError(input, errorElement, "Campo obrigatório");
     validationState.email = false;
+    validationState.emailExists = false;
     return;
   }
 
@@ -42,6 +43,7 @@ function validateEmail(input) {
   } else {
     showError(input, errorElement, "Formato de E-mail inválido");
     validationState.email = false;
+    validationState.emailExists = false;
   }
 }
 
@@ -57,6 +59,7 @@ function validateLogin(input) {
   if (login.length === 0) {
     showError(input, errorElement, "Campo obrigatório");
     validationState.login = false;
+    validationState.loginExists = false;
     return;
   }
 
@@ -92,6 +95,9 @@ document
     const allValid = Object.values(validationState).every(
       (value) => value === true,
     );
+
+    console.log("Validation state:", validationState);
+    console.log("All valid:", allValid);
 
     if (!allValid) {
       e.preventDefault();
