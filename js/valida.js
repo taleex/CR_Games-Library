@@ -70,6 +70,42 @@ function validateLogin(input) {
   });
 }
 
+// Enhanced registration form submission validation
+document
+  .getElementById("registerForm")
+  .addEventListener("submit", function (e) {
+    const submitError = document.getElementById("submitError");
+    submitError.style.display = "none";
+
+    // Validate all fields
+    validateEmail(document.getElementById("regEmail"));
+    validateLogin(document.getElementById("regLogin"));
+    validateName(document.getElementById("regName"));
+    validatePassword(document.getElementById("regPassword"));
+    validateConfirmPassword(document.getElementById("regConfirmPassword"));
+
+    // Check if all validations passed
+    const allValid = Object.values(validationState).every(
+      (value) => value === true,
+    );
+
+    if (!allValid) {
+      e.preventDefault();
+
+      // Add shake animation to highlight invalid fields
+      const invalidFields = this.querySelectorAll(".is-invalid");
+      invalidFields.forEach((field) => {
+        field.style.animation = "none";
+        field.offsetHeight; // trigger reflow
+        field.style.animation = "shake 0.5s ease-in-out";
+      });
+
+      return false;
+    }
+
+    return true;
+  });
+
 function validateName(input) {
   const name = input.value;
   const errorElement = document.getElementById("nameError");
@@ -269,6 +305,43 @@ document
     document.getElementById("confirmPasswordError").style.display = "none";
   });
 
+// Clear registration form when modal is closed
+$("#reg").on("hidden.bs.modal", function () {
+  const regLogin = document.getElementById("regLogin");
+  const regEmail = document.getElementById("regEmail");
+  const regName = document.getElementById("regName");
+  const regPassword = document.getElementById("regPassword");
+  const regConfirmPassword = document.getElementById("regConfirmPassword");
+  const loginError = document.getElementById("loginError");
+  const emailError = document.getElementById("emailError");
+  const nameError = document.getElementById("nameError");
+  const passwordError = document.getElementById("passwordError");
+  const confirmPasswordError = document.getElementById("confirmPasswordError");
+  const submitError = document.getElementById("submitError");
+
+  // Clear input values
+  regLogin.value = "";
+  regEmail.value = "";
+  regName.value = "";
+  regPassword.value = "";
+  regConfirmPassword.value = "";
+
+  // Remove validation classes
+  regLogin.classList.remove("is-invalid", "is-valid");
+  regEmail.classList.remove("is-invalid", "is-valid");
+  regName.classList.remove("is-invalid", "is-valid");
+  regPassword.classList.remove("is-invalid", "is-valid");
+  regConfirmPassword.classList.remove("is-invalid", "is-valid");
+
+  // Hide error messages
+  loginError.style.display = "none";
+  emailError.style.display = "none";
+  nameError.style.display = "none";
+  passwordError.style.display = "none";
+  confirmPasswordError.style.display = "none";
+  submitError.style.display = "none";
+});
+
 // Add shake animation to registration form submission
 document
   .getElementById("registerForm")
@@ -368,6 +441,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show the login modal
     $("#log").modal("show");
   }
+});
+
+// Clear login form when modal is closed
+$("#log").on("hidden.bs.modal", function () {
+  const loginInput = document.getElementById("login");
+  const passwordInput = document.getElementById("password");
+  const loginError = document.getElementById("loginError");
+
+  // Clear input values
+  loginInput.value = "";
+  passwordInput.value = "";
+
+  // Remove validation classes
+  loginInput.classList.remove("is-invalid", "is-valid");
+  passwordInput.classList.remove("is-invalid", "is-valid");
+
+  // Hide error message
+  loginError.style.display = "none";
 });
 
 // Add form submission validation for login
