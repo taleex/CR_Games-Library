@@ -304,7 +304,7 @@ else
 					</div>
 					<div class="modal-footer">
 						<button class='btn btn-secondary' style='margin:5px;' type='submit'>Registar</button>
-						<button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+						<button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button></center>
 					</div>
 				</div>
 			</div>
