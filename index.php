@@ -282,7 +282,7 @@ else
 							
 							<div class="col-md-6">
 								<div class="form-group">
-									<b>Nome do utilizador (Primeiro e Último)</b>
+									<b>Nome do utilizador</b>
 									<input type="text" class="form-control" id="utinome" name="utinome" placeholder="Adolfo Lenin" onblur="validateName(this)">
 									<small id="nameError" class="form-text text-danger" style="display: none;"></small>
 								</div>
