@@ -95,6 +95,9 @@ document
 
     if (!allValid) {
       e.preventDefault();
+      submitError.textContent =
+        "Por favor, corrija os erros no formulário antes de submeter.";
+      submitError.style.display = "block";
 
       // Add shake animation to highlight invalid fields
       const invalidFields = this.querySelectorAll(".is-invalid");
