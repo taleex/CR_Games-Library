@@ -72,8 +72,7 @@ function su2(e, s) {
 // ------------------------ //
 
 //ALL JOGOS
-function filTodosJogos(e, c, pa, page) {
-  if (!page) page = 1;
+function filTodosJogos(e, c, pa) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -85,14 +84,7 @@ function filTodosJogos(e, c, pa, page) {
 
   xmlhttp.open(
     "GET",
-    "files/AJAX/filTodosJogos.php?p=" +
-      e.value +
-      "&c=" +
-      c +
-      "&pa=" +
-      pa +
-      "&pag=" +
-      page,
+    "files/AJAX/filTodosJogos.php?p=" + e.value + "&c=" + c + "&pa=" + pa,
     true,
   );
   xmlhttp.send();

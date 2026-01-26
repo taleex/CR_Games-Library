@@ -55,7 +55,7 @@ if ($result = $lig->query($sql)) {
 
           <center>
               <div class="col-12 col-sm-6 col-md-4 col-lg-3 mx-auto">
-                <input type="text" class="form-control" id="pesq" name="pesquisa" onInput="return filTodosJogos(this,<?php echo $c; ?>,<?php echo $pagtd;?>);">
+                <input type="text" class="form-control" id="pesq" name="pesquisa" onInput="return filTodosJogos(this,<?php echo $c; ?>,1);">
               </div>
               <br>
 
