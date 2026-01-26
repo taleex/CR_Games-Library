@@ -230,12 +230,6 @@
   border-radius: 12px;
 }
 
-/* Game Title Padding */
-.details h3 {
-  padding: 10px;
-  margin: 0;
-}
-
 /* Mobile Nav Improvements */
 #mobile-nav {
   padding-top: 70px; /* Space for logo */
