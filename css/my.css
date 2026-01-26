@@ -243,6 +243,7 @@ body.modal-open {
   padding: 20px 30px;
   border-top: none;
   border-radius: 0 0 12px 12px;
+  text-align: left; /* Match login modal footer alignment */
 }
 
 /* Form Styling for Registration - Match Login Modal Style */
