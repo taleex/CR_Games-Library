@@ -110,6 +110,8 @@ document
       return false;
     }
 
+    // If all validations pass, clear any previous submit error
+    submitError.style.display = "none";
     return true;
   });
 
