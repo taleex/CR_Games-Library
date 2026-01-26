@@ -252,27 +252,29 @@ else
 
 					<!-- Modal Registar -->
 	<div class="modal fade" id="reg" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="Modal">
-					<div class="modal-header">
-						<h4 class="modal-title" style="color:#ffffff;">Registar</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<form action="index.php?cmd=regi" method="post" id="registerForm">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="Modal">
+						<div class="modal-header">
+							<b>
+								<h4 class="modal-title" style="color:#ffffff;">Registar</h4>
+							</b>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
 					</div>
-				</div>
-				<div class="modal-body">
-					<form action="index.php?cmd=regi" method="post" id="registerForm">
+					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="utiLog"><b>Login</b></label>
+									<b>Login</b>
 									<input type="text" id="utiLog" name="utiLog" placeholder="GamerPT2005" class="form-control" onblur="validateLogin(this)">
 									<small id="loginError" class="form-text text-danger" style="display: none;"></small>
 								</div>
 
 								<div class="form-group">
-									<label for="email"><b>Email</b></label>
+									<b>Email</b>
 									<input type="email" class="form-control" name="email" id="email" placeholder="Introduza o E-mail" onblur="validateEmail(this)">
 									<small id="emailError" class="form-text text-danger" style="display: none;"></small>
 								</div>
@@ -280,13 +282,13 @@ else
 							
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="utinome"><b>Nome do utilizador (Primeiro e Último)</b></label>
+									<b>Nome do utilizador (Primeiro e Último)</b>
 									<input type="text" class="form-control" id="utinome" name="utinome" placeholder="Adolfo Lenin" onblur="validateName(this)">
 									<small id="nameError" class="form-text text-danger" style="display: none;"></small>
 								</div>
 
 								<div class="form-group">
-									<label for="nasc"><b>Data de nascimento</b></label>
+									<b>Data de nascimento</b>
 									<input type="date" class="form-control" id="nasc" name="nasc">
 								</div>
 							</div>
@@ -295,7 +297,7 @@ else
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="pass"><b>Password</b></label>
+									<b>Password</b>
 									<input type="password" class="form-control" id="pass" name="pass" oninput="validatePassword(this)">
 									<small id="passwordError" class="form-text text-danger" style="display: none;"></small>
 								</div>
@@ -303,7 +305,7 @@ else
 							
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="confirm_password"><b>Repita a Password</b></label>
+									<b>Repita a Password</b>
 									<input type="password" class="form-control" id="confirm_password" name="confirm_password" oninput="validateConfirmPassword(this)">
 									<small id="confirmPasswordError" class="form-text text-danger" style="display: none;"></small>
 								</div>
@@ -311,15 +313,14 @@ else
 						</div>
 
 						<div id="submitError" class="alert alert-danger" style="display: none;"></div>
-						
-						<div class="modal-footer">
-							<button class='btn btn-default' style='margin:5px;' type='submit'>Registar</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-						</div>
-					</form>
+					</div>
+					<div class="modal-footer">
+						<button class='btn btn-secondary' style='margin:5px;' type='submit'>Registar</button>
+						<button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 	<!--Fim dos Modal-->
 
