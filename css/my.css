@@ -452,96 +452,126 @@ body.modal-open {
   z-index: 1050;
 }
 
-/* Registration Modal Styling - Match Login Modal Style */
-#reg .modal-header {
-  background-color: #f82249;
+/* Login Modal Styling - Match Registration Modal Style */
+#log .modal-header {
+  background: linear-gradient(135deg, #f82249, #d12141);
   color: white;
   border-radius: 12px 12px 0 0;
   padding: 20px 30px;
+  border: none;
 }
 
-#reg .modal-header h4 {
+#log .modal-header h4 {
   margin: 0;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-#reg .modal-body {
+#log .modal-body {
   padding: 30px;
+  background-color: #ffffff;
 }
 
-#reg .modal-footer {
+#log .modal-footer {
   padding: 20px 30px;
   border-top: none;
   border-radius: 0 0 12px 12px;
-  text-align: left; /* Match login modal footer alignment */
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-/* Form Styling for Registration - Match Login Modal Style */
-#reg .form-group {
+/* Form Styling for Login Modal - Match Registration Modal Style */
+#log .form-group {
   margin-bottom: 20px;
 }
 
-#reg .form-control {
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
+#log .form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  box-sizing: border-box;
 }
 
-#reg .form-control:focus {
+#log .form-control:focus {
+  outline: none;
   border-color: #f82249;
-  box-shadow: 0 0 0 0.2rem rgba(248, 34, 73, 0.25);
+  box-shadow: 0 0 0 3px rgba(248, 34, 73, 0.1);
+  background-color: #ffffff;
 }
 
-#reg .form-control.is-invalid {
-  border: 2px solid #dc3545 !important;
+#log .form-control.is-invalid {
+  border-color: #dc3545 !important;
   background-color: #fff5f5;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
 }
 
-#reg .form-control.is-valid {
+#log .form-control.is-valid {
   border-color: #28a745;
   background-color: #f8fff9;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
 }
 
-#reg .form-text.text-danger {
+#log .form-text.text-danger {
   font-size: 12px;
   margin-top: 5px;
   color: #dc3545;
   font-weight: 500;
+  display: none;
 }
 
-/* Button Styling for Registration Modal - Match Login Modal Style */
-#reg .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
+#log .form-control.is-invalid + .form-text.text-danger {
+  display: block;
+}
+
+/* Button Styling for Login Modal - Match Registration Modal Style */
+#log .btn-secondary {
+  background-color: #f82249;
   color: white;
-  border-radius: 4px;
+  border: 2px solid #f82249;
+  border-radius: 8px;
   padding: 10px 20px;
-  font-weight: normal;
-  text-transform: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
+  height: auto;
+  line-height: 1.2;
 }
 
-#reg .btn-secondary:hover {
+#log .btn-secondary:hover {
+  background-color: #d12141;
+  border-color: #d12141;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(248, 34, 73, 0.3);
+}
+
+#log .btn-danger {
+  background-color: #6c757d;
+  color: white;
+  border: 2px solid #6c757d;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  height: auto;
+  line-height: 1.2;
+}
+
+#log .btn-danger:hover {
   background-color: #5a6268;
   border-color: #545b62;
-}
-
-#reg .btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-  color: white;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-weight: normal;
-  text-transform: none;
-  transition: all 0.3s ease;
-}
-
-#reg .btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
 }
 
 /* Alert Styling for Form Errors */
