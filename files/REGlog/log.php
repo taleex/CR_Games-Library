@@ -17,7 +17,10 @@ if ($res->num_rows == 1) {
 	$_SESSION['foto']  = $lin['img'];
 	$_SESSION['login']  = $lin['Login'];
 	$_SESSION['emp']  = $lin['empresa'];
-}
-
+	
 	echo "<meta http-equiv=refresh content=0;URL=index.php?cmd=home>";
+} else {
+	// Invalid credentials - redirect back to home with error
+	echo "<meta http-equiv=refresh content=0;URL=index.php?cmd=home&error=invalid_credentials>";
+}
 ?>

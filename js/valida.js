@@ -239,21 +239,25 @@ document
 // Add event listeners for input change events to clear validation errors
 document.getElementById("regLogin").addEventListener("input", function () {
   this.classList.remove("is-invalid");
+  this.classList.remove("is-valid");
   document.getElementById("loginError").style.display = "none";
 });
 
 document.getElementById("regEmail").addEventListener("input", function () {
   this.classList.remove("is-invalid");
+  this.classList.remove("is-valid");
   document.getElementById("emailError").style.display = "none";
 });
 
 document.getElementById("regName").addEventListener("input", function () {
   this.classList.remove("is-invalid");
+  this.classList.remove("is-valid");
   document.getElementById("nameError").style.display = "none";
 });
 
 document.getElementById("regPassword").addEventListener("input", function () {
   this.classList.remove("is-invalid");
+  this.classList.remove("is-valid");
   document.getElementById("passwordError").style.display = "none";
 });
 
@@ -261,7 +265,47 @@ document
   .getElementById("regConfirmPassword")
   .addEventListener("input", function () {
     this.classList.remove("is-invalid");
+    this.classList.remove("is-valid");
     document.getElementById("confirmPasswordError").style.display = "none";
+  });
+
+// Add shake animation to registration form submission
+document
+  .getElementById("registerForm")
+  .addEventListener("submit", function (e) {
+    const submitError = document.getElementById("submitError");
+    submitError.style.display = "none";
+
+    // Validate all fields
+    validateEmail(document.getElementById("regEmail"));
+    validateLogin(document.getElementById("regLogin"));
+    validateName(document.getElementById("regName"));
+    validatePassword(document.getElementById("regPassword"));
+    validateConfirmPassword(document.getElementById("regConfirmPassword"));
+
+    // Check if all validations passed
+    const allValid = Object.values(validationState).every(
+      (value) => value === true,
+    );
+
+    if (!allValid) {
+      e.preventDefault();
+      submitError.textContent =
+        "Por favor, corrija os erros no formulário antes de submeter.";
+      submitError.style.display = "block";
+
+      // Add shake animation to highlight invalid fields
+      const invalidFields = this.querySelectorAll(".is-invalid");
+      invalidFields.forEach((field) => {
+        field.style.animation = "none";
+        field.offsetHeight; // trigger reflow
+        field.style.animation = "shake 0.5s ease-in-out";
+      });
+
+      return false;
+    }
+
+    return true;
   });
 
 // Add validation for login form
@@ -277,7 +321,11 @@ document.getElementById("password").addEventListener("input", function () {
 function validateLoginForm() {
   const loginInput = document.getElementById("login");
   const passwordInput = document.getElementById("password");
+  const loginError = document.getElementById("loginError");
   let isValid = true;
+
+  // Clear previous error
+  loginError.style.display = "none";
 
   // Validate login field
   if (loginInput.value.trim() === "") {
@@ -298,24 +346,45 @@ function validateLoginForm() {
   return isValid;
 }
 
+// Check for login error from server
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (
+    urlParams.has("error") &&
+    urlParams.get("error") === "invalid_credentials"
+  ) {
+    const loginError = document.getElementById("loginError");
+    const loginInput = document.getElementById("login");
+    const passwordInput = document.getElementById("password");
+
+    loginError.textContent =
+      "Credenciais inválidas. Por favor, verifique seu login e password.";
+    loginError.style.display = "block";
+
+    // Add invalid styling to both fields
+    loginInput.classList.add("is-invalid");
+    passwordInput.classList.add("is-invalid");
+
+    // Show the login modal
+    $("#log").modal("show");
+  }
+});
+
 // Add form submission validation for login
-document
-  .getElementById("login")
-  .closest("form")
-  .addEventListener("submit", function (e) {
-    if (!validateLoginForm()) {
-      e.preventDefault();
-      // Add shake animation to highlight invalid fields
-      const invalidFields = this.querySelectorAll(".is-invalid");
-      invalidFields.forEach((field) => {
-        field.style.animation = "none";
-        field.offsetHeight; // trigger reflow
-        field.style.animation = "shake 0.5s ease-in-out";
-      });
-      return false;
-    }
-    return true;
-  });
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  if (!validateLoginForm()) {
+    e.preventDefault();
+    // Add shake animation to highlight invalid fields
+    const invalidFields = this.querySelectorAll(".is-invalid");
+    invalidFields.forEach((field) => {
+      field.style.animation = "none";
+      field.offsetHeight; // trigger reflow
+      field.style.animation = "shake 0.5s ease-in-out";
+    });
+    return false;
+  }
+  return true;
+});
 
 // Add keyframes for shake animation
 const style = document.createElement("style");

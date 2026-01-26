@@ -217,7 +217,7 @@ else
 	<!--Modais-->
 	<!-- Modal Login -->
 	<div class="modal fade" id="log" role="dialog">
-		<form action="index.php?cmd=logini" method="post">
+		<form action="index.php?cmd=logini" method="post" id="loginForm">
 			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content">
@@ -232,12 +232,13 @@ else
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="login">Login</label>
-							<input type="text" class="form-control" id="login" name="uname" placeholder="Digite seu login">
+							<input type="text" class="form-control" id="login" name="uname" placeholder="Digite seu login" required>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" name="psw" placeholder="Digite sua password">
+							<input type="password" class="form-control" id="password" name="psw" placeholder="Digite sua password" required>
 						</div>
+						<div id="loginError" class="alert alert-danger" style="display: none;"></div>
 					</div>
 					<div class="modal-footer">
 						<button class='btn btn-secondary' style='margin:5px;' type='submit'>Login</button>
