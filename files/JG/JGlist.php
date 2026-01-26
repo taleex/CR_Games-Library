@@ -55,7 +55,7 @@ if ($result = $lig->query($sql)) {
 
           <center>
               <div class="col-12 col-sm-6 col-md-4 col-lg-3 mx-auto">
-                <input type="text" class="form-control" id="pesq" name="pesquisa" onInput="return filTodosJogos(this,<?php echo $c; ?>,1);">
+                <input type="text" class="form-control" id="pesq" name="pesquisa" data-c="<?php echo $c; ?>" placeholder="Pesquisar jogos...">
               </div>
               <br>
 
@@ -120,4 +120,5 @@ if ($result = $lig->query($sql)) {
 ?>
 
 <!-- script ld-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/fil.js"></script>
