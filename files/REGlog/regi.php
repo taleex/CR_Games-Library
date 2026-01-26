@@ -1,4 +1,4 @@
-<?php
+ q<?php
 
 if ($lig->connect_error) {
     die("Connection failed: " . $lig->connect_error);
@@ -16,6 +16,6 @@ if ($lig->connect_error) {
 		 
 	$sql = "insert into Utilizadores (codtipoUti,Login,pass,Nome_Utilizador,nasc,email,ContaAtiva,empresa,img) values ('$tipu','$utiLog',md5('$pass'),'$utinome','$nasc','$email','$att','$prod','$img')";
 	$lig->query($sql) or die("ERRO:Inserção na tabela Utilizadores");
-	echo "<meta http-equiv=refresh content=1;URL=index.php?cmd=home>";
+	echo "<meta http-equiv=refresh content=1;URL=index.php?cmd=home>"; 
 
 ?>
