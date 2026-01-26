@@ -204,7 +204,8 @@ function showError(input, errorElement, message) {
 }
 
 function showSuccess(input) {
-  input.classList.add("is-valid");
+  // Remove invalid styling but don't add success styling
+  input.classList.remove("is-invalid");
 }
 
 function checkEmailExists(email, callback) {
