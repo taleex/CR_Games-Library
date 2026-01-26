@@ -232,11 +232,11 @@ else
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="login">Login</label>
-							<input type="text" class="form-control" id="login" name="uname" placeholder="Digite seu login" required>
+							<input type="text" class="form-control" id="login" name="uname" placeholder="Digite seu login">
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" name="psw" placeholder="Digite sua password" required>
+							<input type="password" class="form-control" id="password" name="psw" placeholder="Digite sua password">
 						</div>
 					</div>
 					<div class="modal-footer">
