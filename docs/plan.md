@@ -1,71 +1,71 @@
-# Register Modal Update Plan
+# UI Update Plan for Modal Login and Register
 
-## Objective
-Update the register modal to remove the "tipo de utilizador" field and set the default user type to "normal", while improving the UI to make it look cleaner.
+## Overview
+Update the UI of both Modal Login and Register forms to match a clean, modern style consistent with the app's design. Implement proper validation feedback with red borders for invalid inputs.
 
 ## Current State Analysis
-Based on the existing codebase, the register modal is likely implemented in:
-- `files/REGlog/regi.php` - Contains the registration form
-- `css/my.css` - Contains custom styling
-- `js/valida.js` - Contains form validation logic
+- Modal Login and Register forms exist but have inconsistent styling
+- Need validation feedback system for invalid inputs
+- Forms should match the app's modern aesthetic
 
 ## Implementation Plan
 
-### Phase 1: Remove "Tipo de Utilizador" Field
-1. **Locate the registration form** in `files/REGlog/regi.php`
-2. **Remove the user type selection field** from the HTML form
-3. **Update the backend processing** to default to "normal" user type
-4. **Remove any related validation** for user type selection
+### 1. Design Analysis
+- [ ] Review current modal styling in CSS files
+- [ ] Analyze existing app color scheme and typography
+- [ ] Identify modern design patterns used in the application
 
-### Phase 2: UI Improvements
-1. **Review current styling** in `css/my.css` for the registration modal
-2. **Implement cleaner design elements**:
-   - Improve spacing and padding
-   - Enhance form field styling
-   - Add better visual hierarchy
-   - Improve button styling
-   - Add subtle animations/transitions
-3. **Implement JavaScript validation with visual feedback**:
-   - Replace required field attributes with custom JS validation
-   - Add red border/stroke to invalid input fields
-   - Display small text below invalid fields with error messages
-   - Remove field from invalid state when corrected
-4. **Ensure responsive design** works across different screen sizes
-5. **Improve accessibility** with proper labels and ARIA attributes
+### 2. CSS Updates
+- [ ] Create unified modal container styling
+- [ ] Update form input styling with modern appearance
+- [ ] Add validation state styles (red border for invalid inputs)
+- [ ] Implement smooth transitions for state changes
+- [ ] Ensure responsive design for different screen sizes
 
-### Phase 3: Backend Updates
-1. **Update database insertion** to automatically set user type to "normal"
-2. **Remove user type validation** from `js/valida.js`
-3. **Test the registration flow** to ensure it works correctly
+### 3. JavaScript Validation Enhancement
+- [ ] Update validation logic to trigger visual feedback
+- [ ] Add event listeners for input change events to clear validation errors
+- [ ] Implement form submission validation with visual indicators
+- [ ] Add proper error message display
 
-### Phase 4: Testing and Validation
-1. **Test registration functionality** with the new simplified form
-2. **Verify user type defaults** to "normal" in the database
-3. **Check UI responsiveness** across different devices
-4. **Validate form submission** works correctly
+### 4. HTML Structure Review
+- [ ] Ensure semantic HTML structure for accessibility
+- [ ] Add proper form labels and ARIA attributes
+- [ ] Verify form field organization and layout
+
+### 5. Testing and Polish
+- [ ] Test validation feedback in both forms
+- [ ] Verify responsive behavior across devices
+- [ ] Check accessibility compliance
+- [ ] Ensure consistent styling between Login and Register modals
+
+## Technical Requirements
+
+### Styling Requirements
+- Clean, modern appearance matching app style
+- Consistent color scheme and typography
+- Smooth transitions and animations
+- Proper spacing and alignment
+
+### Validation Requirements
+- Red border appearance when form is submitted with invalid input
+- Border clearing when input value changes
+- Visual feedback for successful validation states
+- Error message visibility and styling
+
+### Cross-Form Consistency
+- Identical modal container styling
+- Same input field appearance and behavior
+- Consistent button styling and interaction
+- Unified validation feedback system
 
 ## Files to Modify
-
-### Primary Files:
-- `files/REGlog/regi.php` - Remove user type field and update form
-- `css/my.css` - Add improved styling for cleaner UI
-- `js/valida.js` - Remove user type validation
-
-### Secondary Files (if needed):
-- Any database connection files that handle user registration
-- Any session management files that might reference user types
+- `css/my.css` - Main styling updates
+- `js/valida.js` - Validation logic enhancement
+- HTML files containing modal structures (to be identified)
 
 ## Success Criteria
-1. ✅ User registration form no longer shows "tipo de utilizador" field
-2. ✅ All new users are automatically assigned "normal" user type
-3. ✅ Registration modal has improved, cleaner visual design
-4. ✅ Form maintains all existing functionality except user type selection
-5. ✅ Responsive design works across different screen sizes
-6. ✅ Form validation works correctly without user type validation
-
-## Implementation Notes
-- Ensure backward compatibility with existing user accounts
-- Maintain all existing form validation except for user type
-- Keep the registration process simple and intuitive
-- Use consistent styling with the rest of the application
-- Test thoroughly to ensure no functionality is broken
+- Both modals have identical modern styling
+- Validation feedback works correctly (red borders on invalid, cleared on change)
+- Forms are responsive and accessible
+- Visual consistency with the rest of the application

@@ -114,7 +114,7 @@ function validatePassword(input) {
     showSuccess(input);
     validationState.password = true;
     // Also validate confirm password if it has a value
-    const confirmPassword = document.getElementById("confirm_password");
+    const confirmPassword = document.getElementById("regConfirmPassword");
     if (confirmPassword.value !== "") {
       validateConfirmPassword(confirmPassword);
     }
@@ -130,7 +130,7 @@ function validatePassword(input) {
 
 function validateConfirmPassword(input) {
   const confirmPassword = input.value;
-  const password = document.getElementById("pass").value;
+  const password = document.getElementById("regPassword").value;
   const errorElement = document.getElementById("confirmPasswordError");
 
   // Remove previous error styling
@@ -205,11 +205,11 @@ document
     submitError.style.display = "none";
 
     // Validate all fields
-    validateEmail(document.getElementById("email"));
-    validateLogin(document.getElementById("utiLog"));
-    validateName(document.getElementById("utinome"));
-    validatePassword(document.getElementById("pass"));
-    validateConfirmPassword(document.getElementById("confirm_password"));
+    validateEmail(document.getElementById("regEmail"));
+    validateLogin(document.getElementById("regLogin"));
+    validateName(document.getElementById("regName"));
+    validatePassword(document.getElementById("regPassword"));
+    validateConfirmPassword(document.getElementById("regConfirmPassword"));
 
     // Check if all validations passed
     const allValid = Object.values(validationState).every(
@@ -226,3 +226,40 @@ document
 
     return true;
   });
+
+// Add event listeners for input change events to clear validation errors
+document.getElementById("regLogin").addEventListener("input", function () {
+  this.classList.remove("is-invalid");
+  document.getElementById("loginError").style.display = "none";
+});
+
+document.getElementById("regEmail").addEventListener("input", function () {
+  this.classList.remove("is-invalid");
+  document.getElementById("emailError").style.display = "none";
+});
+
+document.getElementById("regName").addEventListener("input", function () {
+  this.classList.remove("is-invalid");
+  document.getElementById("nameError").style.display = "none";
+});
+
+document.getElementById("regPassword").addEventListener("input", function () {
+  this.classList.remove("is-invalid");
+  document.getElementById("passwordError").style.display = "none";
+});
+
+document
+  .getElementById("regConfirmPassword")
+  .addEventListener("input", function () {
+    this.classList.remove("is-invalid");
+    document.getElementById("confirmPasswordError").style.display = "none";
+  });
+
+// Add validation for login form
+document.getElementById("login").addEventListener("input", function () {
+  this.classList.remove("is-invalid");
+});
+
+document.getElementById("password").addEventListener("input", function () {
+  this.classList.remove("is-invalid");
+});

@@ -230,14 +230,13 @@ else
 						</div>
 					</div>
 					<div class="modal-body">
-						<div class="col-auto">
-							<b>Login</b>
-							<input type="text" class="form-control" placeholder="Login" name="uname" required>
+						<div class="form-group">
+							<label for="login">Login</label>
+							<input type="text" class="form-control" id="login" name="uname" placeholder="Digite seu login" required>
 						</div>
-						<br>
-						<div class="col-auto">
-							<b>Password</b>
-							<input type="password" class="form-control" placeholder="password" name="psw" required>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" id="password" name="psw" placeholder="Digite sua password" required>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -265,41 +264,35 @@ else
 						</div>
 					</div>
 					<div class="modal-body">
-						<div class="col-auto">
-							<b>Login</b>
-							<input type="text" id="utiLog" name="utiLog" placeholder="GamerPT2005" class="form-control" onblur="validateLogin(this)">
+						<div class="form-group">
+							<label for="regLogin">Login</label>
+							<input type="text" class="form-control" id="regLogin" name="utiLog" placeholder="Digite seu login" onblur="validateLogin(this)">
 							<small id="loginError" class="form-text text-danger" style="display: none;"></small>
 						</div>
-						<br>
-						<div class="col-auto">
-							<b>Email</b>
-							<input type="email" class="form-control" name="email" id="email" placeholder="Introduza o E-mail" onblur="validateEmail(this)">
+						<div class="form-group">
+							<label for="regEmail">Email</label>
+							<input type="email" class="form-control" id="regEmail" name="email" placeholder="Digite seu email" onblur="validateEmail(this)">
 							<small id="emailError" class="form-text text-danger" style="display: none;"></small>
 						</div>
-						<br>
-						<div class="col-auto">
-							<b>Nome do utilizador</b>
-							<input type="text" class="form-control" id="utinome" name="utinome" placeholder="Adolfo Lenin" onblur="validateName(this)">
+						<div class="form-group">
+							<label for="regName">Nome do utilizador</label>
+							<input type="text" class="form-control" id="regName" name="utinome" placeholder="Digite seu nome completo" onblur="validateName(this)">
 							<small id="nameError" class="form-text text-danger" style="display: none;"></small>
 						</div>
-						<br>
-						<div class="col-auto">
-							<b>Data de nascimento</b>
-							<input type="date" class="form-control" id="nasc" name="nasc">
+						<div class="form-group">
+							<label for="regNasc">Data de nascimento</label>
+							<input type="date" class="form-control" id="regNasc" name="nasc">
 						</div>
-						<br>
-						<div class="col-auto">
-							<b>Password</b>
-							<input type="password" class="form-control" id="pass" name="pass" oninput="validatePassword(this)">
+						<div class="form-group">
+							<label for="regPassword">Password</label>
+							<input type="password" class="form-control" id="regPassword" name="pass" placeholder="Digite sua password" oninput="validatePassword(this)">
 							<small id="passwordError" class="form-text text-danger" style="display: none;"></small>
 						</div>
-						<br>
-						<div class="col-auto">
-							<b>Repita a Password</b>
-							<input type="password" class="form-control" id="confirm_password" name="confirm_password" oninput="validateConfirmPassword(this)">
+						<div class="form-group">
+							<label for="regConfirmPassword">Repita a Password</label>
+							<input type="password" class="form-control" id="regConfirmPassword" name="confirm_password" placeholder="Confirme sua password" oninput="validateConfirmPassword(this)">
 							<small id="confirmPasswordError" class="form-text text-danger" style="display: none;"></small>
 						</div>
-						<br>
 						<div id="submitError" class="alert alert-danger" style="display: none;"></div>
 					</div>
 					<div class="modal-footer">
