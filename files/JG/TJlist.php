@@ -1,4 +1,5 @@
 <?php
+include "../../files/cone.php";
 $co = $_REQUEST['cod'];
 $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Tipo_de_Jogo.CodTipoJogo = $co";
 $res = $lig->query($sql);
