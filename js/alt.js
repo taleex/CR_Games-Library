@@ -32,9 +32,6 @@ function altvalidaMail(m) {
 
 // Username validation with AJAX
 function altexiste(e, c) {
-  // Get the original username value from the form
-  var originalUsername = "<?php echo $lin['Login']; ?>";
-
   if (e.value.length == 0) {
     document.getElementById("altxtlogin").innerHTML = "";
     document.getElementById("altxtlogin").style.display = "none";
@@ -54,14 +51,6 @@ function altexiste(e, c) {
     inputField.classList.remove("success");
     inputField.classList.add("error");
     exis = false;
-    return;
-  }
-
-  // If username hasn't changed from original, don't show error
-  if (e.value === originalUsername) {
-    caixa_login.style.display = "none";
-    inputField.classList.remove("error", "success");
-    exis = true;
     return;
   }
 
