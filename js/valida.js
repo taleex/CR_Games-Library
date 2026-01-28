@@ -274,7 +274,10 @@ document
     // Check if all validations passed (excluding emailExists and loginExists)
     const allValid = Object.entries(validationState).every(([key, value]) => {
       // Skip emailExists and loginExists properties as they indicate conflicts, not success
-      if (key === "emailExists" || key === "loginExists") return true;
+      // emailExists and loginExists should be false for successful validation
+      if (key === "emailExists" || key === "loginExists") {
+        return value === false; // These should be false (no conflicts) for successful validation
+      }
       return value === true;
     });
 
