@@ -284,15 +284,6 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 											</div>
 									<?php }
 									} ?>
-									<table class="table table-hover table-striped">
-										<tbody>
-											<tr>
-												<td>
-													<span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-												</td>
-											</tr>
-										</tbody>
-									</table>
 								</div>
 							<?php } ?>
 
