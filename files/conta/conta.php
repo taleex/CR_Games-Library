@@ -420,7 +420,7 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 										<div class="form-group row">
 											<label class="col-lg-3 col-form-label form-control-label">Nome de Jogo</label>
 											<div class="col-lg-9">
-												<input class="form-control" type="text" id="sugN" name="sugN" value="" required onblur="return existeSug(this);">
+												<input class="form-control" type="text" id="sugN" name="sugN" value="" required>
 												<div class="msg-erro" id='txtSug'></div>
 											</div>
 										</div>
@@ -428,7 +428,7 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 										<div class="form-group row">
 											<label class="col-lg-3 col-form-label form-control-label">Nome de Produtor</label>
 											<div class="col-lg-9">
-												<input class="form-control" type="text" id="sugPr" name="sugPr" value="" required onblur="return validPR(this);">
+												<input class="form-control" type="text" id="sugPr" name="sugPr" value="" required>
 												<span class='msg-erro msg-pr'></span>
 											</div>
 										</div>
