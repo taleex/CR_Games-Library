@@ -194,31 +194,49 @@ function altPasswordMatch(p) {
   }
 }
 
-// Improved form validation
+// Improved form validation - only validate changed or non-empty fields
 function altvalida() {
   var flag = true;
   var caixa_reg = document.querySelector(".altmsg-registo");
 
-  // Validate all fields
-  if (!valmail) {
-    flag = false;
-    document.querySelector(".altmsg-email").style.display = "block";
+  // Get current values from form fields
+  var emailField = document.getElementById("altemail");
+  var usernameField = document.getElementById("Loginalt");
+  var nameField = document.getElementById("altutinome");
+  var passField = document.getElementById("altpass");
+  var cpassField = document.getElementById("altconfirm_password");
+
+  // Only validate email if it's not empty
+  if (emailField.value.trim() !== "") {
+    if (!valmail) {
+      flag = false;
+      document.querySelector(".altmsg-email").style.display = "block";
+    }
   }
 
-  if (!exis) {
-    flag = false;
-    document.getElementById("altxtlogin").style.display = "block";
+  // Only validate username if it's not empty
+  if (usernameField.value.trim() !== "") {
+    if (!exis) {
+      flag = false;
+      document.getElementById("altxtlogin").style.display = "block";
+    }
   }
 
-  if (!valNom) {
-    flag = false;
-    document.querySelector(".altmsg-nome").style.display = "block";
+  // Only validate name if it's not empty
+  if (nameField.value.trim() !== "") {
+    if (!valNom) {
+      flag = false;
+      document.querySelector(".altmsg-nome").style.display = "block";
+    }
   }
 
-  if (!Passch) {
-    flag = false;
-    document.querySelector(".altmsg-pass").style.display = "block";
-    document.querySelector(".altmsg-cpass").style.display = "block";
+  // Only validate password if password field is not empty
+  if (passField.value.trim() !== "") {
+    if (!Passch) {
+      flag = false;
+      document.querySelector(".altmsg-pass").style.display = "block";
+      document.querySelector(".altmsg-cpass").style.display = "block";
+    }
   }
 
   if (!flag) {
