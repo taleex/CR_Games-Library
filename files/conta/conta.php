@@ -354,7 +354,7 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 									<div class="form-group row">
 										<label class="col-lg-3 col-form-label form-control-label">Password</label>
 										<div class="col-lg-9">
-											<input type="password" class="form-control" id="altpass" name="altpass" onChange="altPasswordMatch(this);" required>
+											<input type="password" class="form-control" id="altpass" name="altpass" onChange="altPasswordMatch(this);">
 											<span class='msg-erro altmsg-pass'></span>
 										</div>
 									</div>
@@ -362,7 +362,7 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 									<div class="form-group row">
 										<label class="col-lg-3 col-form-label form-control-label">Repita a Password</label>
 										<div class="col-lg-9">
-											<input type="password" class="form-control" id="altconfirm_password" name="altconfirm_password" onChange="altPasswordMatch(this);" required>
+											<input type="password" class="form-control" id="altconfirm_password" name="altconfirm_password" onChange="altPasswordMatch(this);">
 											<span class='msg-erro altmsg-cpass'></span>
 										</div>
 									</div>
