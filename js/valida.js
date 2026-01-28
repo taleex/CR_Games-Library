@@ -24,7 +24,7 @@ function validateEmail(input) {
     showError(input, errorElement, "Campo obrigatório");
     validationState.email = false;
     validationState.emailExists = false;
-    return;
+    return false;
   }
 
   if (emailRegex.test(email)) {
@@ -40,10 +40,12 @@ function validateEmail(input) {
         validationState.emailExists = false;
       }
     });
+    return true;
   } else {
     showError(input, errorElement, "Formato de E-mail inválido");
     validationState.email = false;
     validationState.emailExists = false;
+    return false;
   }
 }
 
@@ -60,7 +62,7 @@ function validateLogin(input) {
     showError(input, errorElement, "Campo obrigatório");
     validationState.login = false;
     validationState.loginExists = false;
-    return;
+    return false;
   }
 
   // Check if login already exists
@@ -75,6 +77,7 @@ function validateLogin(input) {
       validationState.loginExists = false;
     }
   });
+  return true;
 }
 
 function validateName(input) {
@@ -90,12 +93,13 @@ function validateName(input) {
   if (name === "") {
     showError(input, errorElement, "Campo obrigatório");
     validationState.name = false;
-    return;
+    return false;
   }
 
   if (nameRegex.test(name)) {
     showSuccess(input);
     validationState.name = true;
+    return true;
   } else {
     showError(
       input,
@@ -103,6 +107,7 @@ function validateName(input) {
       "Formato de Nome inválido (Primeiro e Último nome)",
     );
     validationState.name = false;
+    return false;
   }
 }
 
@@ -118,7 +123,7 @@ function validatePassword(input) {
   if (password === "") {
     showError(input, errorElement, "Campo obrigatório");
     validationState.password = false;
-    return;
+    return false;
   }
 
   if (password.length >= 6) {
@@ -129,6 +134,7 @@ function validatePassword(input) {
     if (confirmPassword.value !== "") {
       validateConfirmPassword(confirmPassword);
     }
+    return true;
   } else {
     showError(
       input,
@@ -136,6 +142,7 @@ function validatePassword(input) {
       "A password deve ter pelo menos 6 caracteres",
     );
     validationState.password = false;
+    return false;
   }
 }
 
@@ -152,15 +159,17 @@ function validateConfirmPassword(input) {
   if (confirmPassword === "") {
     showError(input, errorElement, "Campo obrigatório");
     validationState.confirmPassword = false;
-    return;
+    return false;
   }
 
   if (confirmPassword === password) {
     showSuccess(input);
     validationState.confirmPassword = true;
+    return true;
   } else {
     showError(input, errorElement, "As passwords não coincidem");
     validationState.confirmPassword = false;
+    return false;
   }
 }
 
@@ -218,12 +227,49 @@ document
     const submitError = document.getElementById("submitError");
     submitError.style.display = "none";
 
-    // Validate all fields
-    validateEmail(document.getElementById("regEmail"));
-    validateLogin(document.getElementById("regLogin"));
-    validateName(document.getElementById("regName"));
-    validatePassword(document.getElementById("regPassword"));
-    validateConfirmPassword(document.getElementById("regConfirmPassword"));
+    // Validate all fields synchronously first
+    const emailValid = validateEmail(document.getElementById("regEmail"));
+    const loginValid = validateLogin(document.getElementById("regLogin"));
+    const nameValid = validateName(document.getElementById("regName"));
+    const passwordValid = validatePassword(
+      document.getElementById("regPassword"),
+    );
+    const confirmPasswordValid = validateConfirmPassword(
+      document.getElementById("regConfirmPassword"),
+    );
+
+    // Check if all basic validations passed
+    if (
+      !emailValid ||
+      !loginValid ||
+      !nameValid ||
+      !passwordValid ||
+      !confirmPasswordValid
+    ) {
+      e.preventDefault();
+      submitError.textContent =
+        "Por favor, corrija os erros no formulário antes de submeter.";
+      submitError.style.display = "block";
+
+      // Add shake animation to highlight invalid fields
+      const invalidFields = this.querySelectorAll(".is-invalid");
+      invalidFields.forEach((field) => {
+        field.style.animation = "none";
+        field.offsetHeight; // trigger reflow
+        field.style.animation = "shake 0.5s ease-in-out";
+      });
+
+      return false;
+    }
+
+    // Check if email and login existence validations are complete
+    if (!validationState.email || !validationState.login) {
+      e.preventDefault();
+      submitError.textContent =
+        "Por favor, aguarde a validação do email e login.";
+      submitError.style.display = "block";
+      return false;
+    }
 
     // Check if all validations passed
     const allValid = Object.values(validationState).every(
