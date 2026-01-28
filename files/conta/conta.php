@@ -1,7 +1,8 @@
 <link href="../../css/cc.css" rel="stylesheet">
 
 <?php
-if ((isset($_SESSION['codtipoUti']))) {
+// Enhanced session validation - check for complete session data
+if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($_SESSION['login']))) {
 	#-----Utilizador normal----#
 	//USER
 	$c = $_SESSION['codUti'];
