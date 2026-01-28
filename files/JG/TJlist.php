@@ -3,7 +3,13 @@ include "../../files/cone.php";
 $co = $_REQUEST['cod'];
 $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Tipo_de_Jogo.CodTipoJogo = $co";
 $res = $lig->query($sql);
+if (!$res) {
+    die("Error in first query: " . $lig->error);
+}
 $lin = $res->fetch_array();
+if (!$lin) {
+    die("No genre found with cod: $co");
+}
 ?>
 
 <link href="../../css/my.css" rel="stylesheet">
@@ -39,6 +45,9 @@ else {
   $sql = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtores,Jogos where Tipo_de_Jogo.CodTipoJogo=Jogos.CodTipoJogo and Produtores.Codigo_Produtor=Jogos.Codigo_Produtor and Tipo_de_Jogo.CodTipoJogo = $co order by Codigo_Jogo limit $ini, $tp";
 }
 $res = $lig->query($sql);
+if (!$res) {
+    die("Error in pagination query: " . $lig->error);
+}
 if ((isset($_SESSION['codtipoUti']))) {
   $c = $_SESSION['codUti'];
 
@@ -47,8 +56,11 @@ if ((isset($_SESSION['codtipoUti']))) {
   $c = -404;
 }
 
-if ($result = $lig->query($sql)) {
-  if ($result->num_rows > 0) { ?>
+if ($games_result = $lig->query($sql)) {
+  if (!$games_result) {
+      die("Error in main query: " . $lig->error);
+  }
+  if ($games_result->num_rows > 0) { ?>
 
     <section id="bc" class="full-height">
       <section id="speakers" class="wow fadeInUp">
@@ -75,7 +87,7 @@ if ($result = $lig->query($sql)) {
         <div class="container" id="GR">
           <div class="row">
             <?php
-            while ($row = $result->fetch_array()) {
+            while ($row = $games_result->fetch_array()) {
             ?>
               <div class="col-lg-4 col-md-4 col-sm-8">
                 <div class="speaker">
