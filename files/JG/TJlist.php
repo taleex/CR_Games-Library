@@ -8,8 +8,10 @@ if (!$res) {
 }
 $lin = $res->fetch_array();
 if (!$lin) {
-    die("No genre found with cod: $co");
+    echo "<div style='color: red; padding: 20px; border: 2px solid red;'>DEBUG: No genre found with cod: $co</div>";
+    exit;
 }
+echo "<!-- DEBUG: Genre found: " . $lin['Genero'] . " -->";
 ?>
 
 <link href="../../css/my.css" rel="stylesheet">
@@ -60,6 +62,8 @@ if ($games_result = $lig->query($sql)) {
   if (!$games_result) {
       die("Error in main query: " . $lig->error);
   }
+  echo "<!-- DEBUG: SQL Query: $sql -->";
+  echo "<!-- DEBUG: Games query executed, found " . $games_result->num_rows . " games -->";
   if ($games_result->num_rows > 0) { ?>
 
     <section id="bc" class="full-height">
