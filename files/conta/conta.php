@@ -148,8 +148,8 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 								<h5 class="mb-3" style="color:White;"><b><?php echo $lin['Nome_Utilizador']; ?></b></h5>
 								<div class="row">
 									<div class="col-md-6">
-										<h6 style="color:#f82249"><b><?php echo $lin['dsg']; ?></b> <?php if (($_SESSION['codtipoUti'] == '12')) { 
-											// Get producer info for type 12 users
+										<h6 style="color:#f82249"><b><?php echo $lin['dsg']; ?></b> <?php if (($_SESSION['codtipoUti'] == '12') && ($lin['empresa'] != 4)) { 
+											// Get producer info for type 12 users (only if they have a producer assigned)
 											$sqlpr = "select Utilizadores.*,Produtores.* from Utilizadores,Produtores where Codigo_Produtor=empresa and codUti = $c";
 											$respr = $lig->query($sqlpr);
 											$linpr = $respr->fetch_array();

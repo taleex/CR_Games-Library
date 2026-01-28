@@ -12,7 +12,7 @@ if ($lig->connect_error) {
 		 $email=$_REQUEST['email'];
 		 $img="./backoffice/3P2/files/IMG/defeito.png";
 		 $att=1;
-		 $prod = null; // Normal users don't have a produtora
+		 $prod = 4; // Default to "nenhuma" (none) for normal users
 		 
 	$sql = "insert into Utilizadores (codtipoUti,Login,pass,Nome_Utilizador,nasc,email,ContaAtiva,empresa,img) values ('$tipu','$utiLog',md5('$pass'),'$utinome','$nasc','$email','$att','$prod','$img')";
 	$lig->query($sql) or die("ERRO:Inserção na tabela Utilizadores");
