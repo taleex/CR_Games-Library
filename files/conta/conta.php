@@ -324,7 +324,7 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 									<div class="form-group row">
 										<label class="col-lg-3 col-form-label form-control-label">Username</label>
 										<div class="col-lg-9">
-											<input class="form-control" type="text" id="Loginalt" name="Loginalt" required value="<?php echo $lin['Login']; ?>" onblur="return altexiste(this,<?php echo $c;?>);">
+											<input class="form-control" type="text" id="Loginalt" name="Loginalt" required value="<?php echo $lin['Login']; ?>" data-original="<?php echo $lin['Login']; ?>" onblur="return altexiste(this,<?php echo $c;?>);">
 											<div class="msg-erro" id='altxtlogin'></div>
 										</div>
 									</div>
@@ -332,14 +332,14 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 									<div class="form-group row">
 										<label class="col-lg-3 col-form-label form-control-label">Nome(Primeiro e ultimo)</label>
 										<div class="col-lg-9">
-											<input class="form-control" type="text" id="altutinome" name="altutinome" required value="<?php echo $lin['Nome_Utilizador']; ?>" onblur="return altvalidaNom(this);">
+											<input class="form-control" type="text" id="altutinome" name="altutinome" required value="<?php echo $lin['Nome_Utilizador']; ?>" data-original="<?php echo $lin['Nome_Utilizador']; ?>" onblur="return altvalidaNom(this);">
 											<span class='msg-erro altmsg-nome'></span>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-lg-3 col-form-label form-control-label">Email</label>
 										<div class="col-lg-9">
-											<input class="form-control" name="altemail" id="altemail" type="email" required value="<?php echo $lin['email']; ?>" onblur="return altvalidaMail(this);">
+											<input class="form-control" name="altemail" id="altemail" type="email" required value="<?php echo $lin['email']; ?>" data-original="<?php echo $lin['email']; ?>" onblur="return altvalidaMail(this);">
 											<span class='msg-erro altmsg-email'></span>
 										</div>
 									</div>

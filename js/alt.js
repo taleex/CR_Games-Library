@@ -206,24 +206,34 @@ function altvalida() {
   var passField = document.getElementById("altpass");
   var cpassField = document.getElementById("altconfirm_password");
 
-  // Only validate email if it's not empty
-  if (emailField.value.trim() !== "") {
+  // Get original values from the form (stored as data attributes or from session)
+  var originalEmail =
+    emailField.getAttribute("data-original") || emailField.value;
+  var originalUsername =
+    usernameField.getAttribute("data-original") || usernameField.value;
+  var originalName = nameField.getAttribute("data-original") || nameField.value;
+
+  // Check if email was changed and validate only if changed
+  if (emailField.value.trim() !== "" && emailField.value !== originalEmail) {
     if (!valmail) {
       flag = false;
       document.querySelector(".altmsg-email").style.display = "block";
     }
   }
 
-  // Only validate username if it's not empty
-  if (usernameField.value.trim() !== "") {
+  // Check if username was changed and validate only if changed
+  if (
+    usernameField.value.trim() !== "" &&
+    usernameField.value !== originalUsername
+  ) {
     if (!exis) {
       flag = false;
       document.getElementById("altxtlogin").style.display = "block";
     }
   }
 
-  // Only validate name if it's not empty
-  if (nameField.value.trim() !== "") {
+  // Check if name was changed and validate only if changed
+  if (nameField.value.trim() !== "" && nameField.value !== originalName) {
     if (!valNom) {
       flag = false;
       document.querySelector(".altmsg-nome").style.display = "block";
