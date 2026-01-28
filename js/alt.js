@@ -17,9 +17,41 @@ function altvalidaMail(m) {
   }
 
   if (filtro.test(m.value)) {
-    caixa_email.style.display = "none";
-    inputField.classList.remove("error", "success"); // Don't add success class
-    valmail = true;
+    // Check if email is available via AJAX
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var response = xmlhttp.responseText.trim();
+        if (response === "Email disponível") {
+          caixa_email.style.display = "none";
+          inputField.classList.remove("error", "success");
+          valmail = true;
+        } else {
+          caixa_email.innerHTML = response;
+          caixa_email.style.display = "block";
+          inputField.classList.remove("success");
+          inputField.classList.add("error");
+          valmail = false;
+        }
+      }
+    };
+
+    // Get user ID from a hidden input field
+    var userId = document.getElementById("userId").value;
+    xmlhttp.open(
+      "GET",
+      "files/AJAX/existeEmail.php?m=" +
+        encodeURIComponent(m.value) +
+        "&c=" +
+        userId,
+      true,
+    );
+    xmlhttp.send();
   } else {
     caixa_email.innerHTML =
       "Formato de E-mail inválido. Ex: usuario@dominio.com";

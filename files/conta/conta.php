@@ -318,6 +318,8 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 
 							<!-- Editar dados de Utilizador -->
 							<div class="tab-pane" id="edit" style="color:White;">
+								<!-- Hidden field to store user ID for JavaScript -->
+								<input type="hidden" id="userId" value="<?php echo $c; ?>">
 								<form action="index.php?cmd=alt" method="POST" role="form" onsubmit="return altvalida();">
 									<div class="form-group row">
 										<label class="col-lg-3 col-form-label form-control-label">Username</label>
