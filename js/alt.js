@@ -18,8 +18,7 @@ function altvalidaMail(m) {
 
   if (filtro.test(m.value)) {
     caixa_email.style.display = "none";
-    inputField.classList.remove("error");
-    inputField.classList.add("success");
+    inputField.classList.remove("error", "success"); // Don't add success class
     valmail = true;
   } else {
     caixa_email.innerHTML =
@@ -33,6 +32,9 @@ function altvalidaMail(m) {
 
 // Username validation with AJAX
 function altexiste(e, c) {
+  // Get the original username value from the form
+  var originalUsername = "<?php echo $lin['Login']; ?>";
+
   if (e.value.length == 0) {
     document.getElementById("altxtlogin").innerHTML = "";
     document.getElementById("altxtlogin").style.display = "none";
@@ -52,6 +54,14 @@ function altexiste(e, c) {
     inputField.classList.remove("success");
     inputField.classList.add("error");
     exis = false;
+    return;
+  }
+
+  // If username hasn't changed from original, don't show error
+  if (e.value === originalUsername) {
+    caixa_login.style.display = "none";
+    inputField.classList.remove("error", "success");
+    exis = true;
     return;
   }
 
@@ -118,7 +128,7 @@ function altvalidaNom(n) {
   }
 }
 
-// Password validation with strength checking
+// Password validation with simplified rules
 function altPasswordMatch(p) {
   var caixa_pass = document.querySelector(".altmsg-pass");
   var caixa_cpass = document.querySelector(".altmsg-cpass");
@@ -135,13 +145,9 @@ function altPasswordMatch(p) {
 
   if (p.value == "") return true;
 
-  // Password strength validation
-  var passRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-  if (!passRegex.test(password)) {
-    caixa_pass.innerHTML =
-      "A password deve ter no mínimo 8 caracteres, incluindo maiúsculas, minúsculas, números e caracteres especiais";
+  // Simplified password validation - just minimum length
+  if (password.length < 6) {
+    caixa_pass.innerHTML = "A password deve ter no mínimo 6 caracteres";
     caixa_pass.style.display = "block";
     passField.classList.add("error");
     Passch = false;

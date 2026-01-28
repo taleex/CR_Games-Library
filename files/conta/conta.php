@@ -17,7 +17,7 @@
     
     /* Form labels color */
     .tab-pane .form-group label {
-        color: #000 !important;
+        color: #ffffff !important;
         font-weight: 600;
     }
     
