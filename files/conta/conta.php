@@ -148,7 +148,13 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 								<h5 class="mb-3" style="color:White;"><b><?php echo $lin['Nome_Utilizador']; ?></b></h5>
 								<div class="row">
 									<div class="col-md-6">
-										<h6 style="color:#f82249"><b><?php echo $lin['dsg']; ?></b> <?php if (($_SESSION['codtipoUti'] == '12')) echo "<b style='color:White'>da </b><b><a href='index.php?cmd=PRlist&cod=" . $linpr['Codigo_Produtor'] . "'>" . $linpr['Nome_Produtor'] . "</a></b>"; ?></h6>
+										<h6 style="color:#f82249"><b><?php echo $lin['dsg']; ?></b> <?php if (($_SESSION['codtipoUti'] == '12')) { 
+											// Get producer info for type 12 users
+											$sqlpr = "select Utilizadores.*,Produtores.* from Utilizadores,Produtores where Codigo_Produtor=empresa and codUti = $c";
+											$respr = $lig->query($sqlpr);
+											$linpr = $respr->fetch_array();
+											echo "<b style='color:White'>da </b><b><a href='index.php?cmd=PRlist&cod=" . $linpr['Codigo_Produtor'] . "'>" . $linpr['Nome_Produtor'] . "</a></b>"; 
+										} ?></h6>
 									</div>
 									<div class="col-md-6">
 										<h6 style="color: White"><b>Sugestões de Generos de Jogos</b></h6>
