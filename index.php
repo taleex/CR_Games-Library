@@ -91,7 +91,9 @@ else
 
 
 						?>
-							<li><a href="index.php?cmd=PRlist&cod=<?php echo $linpr['Codigo_Produtor']; ?>"><?php echo $linpr['Nome_Produtor']; ?></a></li>
+							<?php if ($linpr['Codigo_Produtor'] != 4) { ?>
+								<li><a href="index.php?cmd=PRlist&cod=<?php echo $linpr['Codigo_Produtor']; ?>"><?php echo $linpr['Nome_Produtor']; ?></a></li>
+							<?php } ?>
 							<li><a href="backoffice/3P2/index.php">BackOFFICE</a></li>
 
 						<?php } ?>

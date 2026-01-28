@@ -153,7 +153,9 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 											$sqlpr = "select Utilizadores.*,Produtores.* from Utilizadores,Produtores where Codigo_Produtor=empresa and codUti = $c";
 											$respr = $lig->query($sqlpr);
 											$linpr = $respr->fetch_array();
-											echo "<b style='color:White'>da </b><b><a href='index.php?cmd=PRlist&cod=" . $linpr['Codigo_Produtor'] . "'>" . $linpr['Nome_Produtor'] . "</a></b>"; 
+											if ($linpr['Codigo_Produtor'] != 4) {
+												echo "<b style='color:White'>da </b><b><a href='index.php?cmd=PRlist&cod=" . $linpr['Codigo_Produtor'] . "'>" . $linpr['Nome_Produtor'] . "</a></b>"; 
+											}
 										} ?></h6>
 									</div>
 									<div class="col-md-6">
