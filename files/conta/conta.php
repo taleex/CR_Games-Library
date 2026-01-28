@@ -17,7 +17,7 @@
     
     /* Form labels color */
     .tab-pane .form-group label {
-        color: #333 !important;
+        color: #000 !important;
         font-weight: 600;
     }
     
@@ -364,7 +364,41 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 											<span class='msg-erro altmsg-cpass'></span>
 										</div>
 									</div>
+
+									<span class='msg-erro altmsg-registo'></span>
+									<div class="form-group row">
+										<label class="col-lg-3 col-form-label form-control-label"></label>
+										<div class="col-lg-9">
+											<button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+											<input type="submit" class="btn btn-danger" value="Save">
+										</div>
+									</div>
 								</form>
+
+								<script>
+								function clearForm() {
+								    document.getElementById('Loginalt').value = '<?php echo $lin['Login']; ?>';
+								    document.getElementById('altutinome').value = '<?php echo $lin['Nome_Utilizador']; ?>';
+								    document.getElementById('altemail').value = '<?php echo $lin['email']; ?>';
+								    document.getElementById('altnasc').value = '<?php echo $lin['nasc']; ?>';
+								    document.getElementById('altpass').value = '';
+								    document.getElementById('altconfirm_password').value = '';
+								    
+								    // Clear validation states
+								    var inputs = document.querySelectorAll('.tab-pane input');
+								    inputs.forEach(function(input) {
+								        input.classList.remove('error', 'success');
+								    });
+								    
+								    // Clear error messages
+								    var errorMessages = document.querySelectorAll('.msg-erro');
+								    errorMessages.forEach(function(msg) {
+								        msg.style.display = 'none';
+								    });
+								    
+								    document.querySelector('.altmsg-registo').style.display = 'none';
+								}
+								</script>
 							</div>
 
 							<!-- Sugestão -->
