@@ -1,19 +1,43 @@
 <link href="../../css/cc.css" rel="stylesheet">
 
 <style>
-    /* Form field text color fixes */
+    /* Form field styling - white background with dark text */
     .tab-pane input[type="text"],
     .tab-pane input[type="email"],
     .tab-pane input[type="password"],
     .tab-pane input[type="date"] {
-        color: white !important;
-        background-color: #343a40 !important;
-        border-color: #6c757d !important;
+        color: #333 !important;
+        background-color: #ffffff !important;
+        border-color: #ced4da !important;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 14px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
     
     /* Form labels color */
     .tab-pane .form-group label {
-        color: white !important;
+        color: #333 !important;
+        font-weight: 600;
+    }
+    
+    /* Focus states for better UX */
+    .tab-pane input:focus {
+        border-color: #80bdff !important;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    
+    /* Error state styling */
+    .tab-pane .form-control.error {
+        border-color: #dc3545 !important;
+        background-color: #f8d7da !important;
+    }
+    
+    /* Success state styling */
+    .tab-pane .form-control.success {
+        border-color: #28a745 !important;
+        background-color: #d4edda !important;
     }
 </style>
 
@@ -338,16 +362,6 @@ if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($
 										<div class="col-lg-9">
 											<input type="password" class="form-control" id="altconfirm_password" name="altconfirm_password" onChange="altPasswordMatch(this);" required>
 											<span class='msg-erro altmsg-cpass'></span>
-										</div>
-									</div>
-
-									<span class='msg-erro altmsg-registo'></span>
-									<div class="form-group row">
-										<label class="col-lg-3 col-form-label form-control-label"></label>
-										<div class="col-lg-9">
-											<!--<a data-toggle="modal" data-target="#ALT">Login</a>-->
-											<input type="reset" class="btn btn-secondary" value="Cancel">
-											<input type="submit" class="btn btn-danger" value="Alterar">
 										</div>
 									</div>
 								</form>
