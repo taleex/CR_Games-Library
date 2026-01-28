@@ -1,5 +1,22 @@
 <link href="../../css/cc.css" rel="stylesheet">
 
+<style>
+    /* Form field text color fixes */
+    .tab-pane input[type="text"],
+    .tab-pane input[type="email"],
+    .tab-pane input[type="password"],
+    .tab-pane input[type="date"] {
+        color: white !important;
+        background-color: #343a40 !important;
+        border-color: #6c757d !important;
+    }
+    
+    /* Form labels color */
+    .tab-pane .form-group label {
+        color: white !important;
+    }
+</style>
+
 <?php
 // Enhanced session validation - check for complete session data
 if ((isset($_SESSION['codtipoUti'])) && (isset($_SESSION['codUti'])) && (isset($_SESSION['login']))) {
