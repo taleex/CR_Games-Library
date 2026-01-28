@@ -77,50 +77,6 @@ function validateLogin(input) {
   });
 }
 
-// Enhanced registration form submission validation
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", function (e) {
-    const submitError = document.getElementById("submitError");
-    submitError.style.display = "none";
-
-    // Validate all fields
-    validateEmail(document.getElementById("regEmail"));
-    validateLogin(document.getElementById("regLogin"));
-    validateName(document.getElementById("regName"));
-    validatePassword(document.getElementById("regPassword"));
-    validateConfirmPassword(document.getElementById("regConfirmPassword"));
-
-    // Check if all validations passed
-    const allValid = Object.values(validationState).every(
-      (value) => value === true,
-    );
-
-    console.log("Validation state:", validationState);
-    console.log("All valid:", allValid);
-
-    if (!allValid) {
-      e.preventDefault();
-      submitError.textContent =
-        "Por favor, corrija os erros no formulário antes de submeter.";
-      submitError.style.display = "block";
-
-      // Add shake animation to highlight invalid fields
-      const invalidFields = this.querySelectorAll(".is-invalid");
-      invalidFields.forEach((field) => {
-        field.style.animation = "none";
-        field.offsetHeight; // trigger reflow
-        field.style.animation = "shake 0.5s ease-in-out";
-      });
-
-      return false;
-    }
-
-    // If all validations pass, clear any previous submit error
-    submitError.style.display = "none";
-    return true;
-  });
-
 function validateName(input) {
   const name = input.value;
   const errorElement = document.getElementById("nameError");
@@ -255,7 +211,7 @@ function checkLoginExists(login, callback) {
   xmlhttp.send();
 }
 
-// Form submission validation
+// Enhanced registration form submission validation
 document
   .getElementById("registerForm")
   .addEventListener("submit", function (e) {
@@ -274,6 +230,9 @@ document
       (value) => value === true,
     );
 
+    console.log("Validation state:", validationState);
+    console.log("All valid:", allValid);
+
     if (!allValid) {
       e.preventDefault();
       submitError.textContent =
@@ -291,6 +250,8 @@ document
       return false;
     }
 
+    // If all validations pass, clear any previous submit error
+    submitError.style.display = "none";
     return true;
   });
 
@@ -368,45 +329,6 @@ $("#reg").on("hidden.bs.modal", function () {
   confirmPasswordError.style.display = "none";
   submitError.style.display = "none";
 });
-
-// Add shake animation to registration form submission
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", function (e) {
-    const submitError = document.getElementById("submitError");
-    submitError.style.display = "none";
-
-    // Validate all fields
-    validateEmail(document.getElementById("regEmail"));
-    validateLogin(document.getElementById("regLogin"));
-    validateName(document.getElementById("regName"));
-    validatePassword(document.getElementById("regPassword"));
-    validateConfirmPassword(document.getElementById("regConfirmPassword"));
-
-    // Check if all validations passed
-    const allValid = Object.values(validationState).every(
-      (value) => value === true,
-    );
-
-    if (!allValid) {
-      e.preventDefault();
-      submitError.textContent =
-        "Por favor, corrija os erros no formulário antes de submeter.";
-      submitError.style.display = "block";
-
-      // Add shake animation to highlight invalid fields
-      const invalidFields = this.querySelectorAll(".is-invalid");
-      invalidFields.forEach((field) => {
-        field.style.animation = "none";
-        field.offsetHeight; // trigger reflow
-        field.style.animation = "shake 0.5s ease-in-out";
-      });
-
-      return false;
-    }
-
-    return true;
-  });
 
 // Add validation for login form
 document.getElementById("login").addEventListener("input", function () {

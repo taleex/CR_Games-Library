@@ -269,31 +269,31 @@ else
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="regLogin">Login</label>
-							<input type="text" class="form-control" id="regLogin" name="utiLog" placeholder="Digite seu login" onblur="validateLogin(this)">
+							<input type="text" class="form-control" id="regLogin" name="utiLog" placeholder="Digite seu login" onblur="validateLogin(this)" required minlength="3" maxlength="50">
 							<small id="loginError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 						<div class="form-group">
 							<label for="regEmail">Email</label>
-							<input type="email" class="form-control" id="regEmail" name="email" placeholder="Digite seu email" onblur="validateEmail(this)">
+							<input type="email" class="form-control" id="regEmail" name="email" placeholder="Digite seu email" onblur="validateEmail(this)" required>
 							<small id="emailError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 						<div class="form-group">
 							<label for="regName">Nome do utilizador</label>
-							<input type="text" class="form-control" id="regName" name="utinome" placeholder="Digite seu nome completo" onblur="validateName(this)">
+							<input type="text" class="form-control" id="regName" name="utinome" placeholder="Digite seu nome completo" onblur="validateName(this)" required pattern="[a-zA-Z]+ [a-zA-Z]+" title="Digite o primeiro e último nome">
 							<small id="nameError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 						<div class="form-group">
 							<label for="regNasc">Data de nascimento</label>
-							<input type="date" class="form-control" id="regNasc" name="nasc">
+							<input type="date" class="form-control" id="regNasc" name="nasc" required>
 						</div>
 						<div class="form-group">
 							<label for="regPassword">Password</label>
-							<input type="password" class="form-control" id="regPassword" name="pass" placeholder="Digite sua password" oninput="validatePassword(this)">
+							<input type="password" class="form-control" id="regPassword" name="pass" placeholder="Digite sua password" oninput="validatePassword(this)" required minlength="6" maxlength="100">
 							<small id="passwordError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 						<div class="form-group">
 							<label for="regConfirmPassword">Repita a Password</label>
-							<input type="password" class="form-control" id="regConfirmPassword" name="confirm_password" placeholder="Confirme sua password" oninput="validateConfirmPassword(this)">
+							<input type="password" class="form-control" id="regConfirmPassword" name="confirm_password" placeholder="Confirme sua password" oninput="validateConfirmPassword(this)" required>
 							<small id="confirmPasswordError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 						<div id="submitError" class="alert alert-danger" style="display: none;"></div>

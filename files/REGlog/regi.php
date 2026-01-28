@@ -1,4 +1,4 @@
- q<?php
+<?php
 
 if ($lig->connect_error) {
     die("Connection failed: " . $lig->connect_error);
