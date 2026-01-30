@@ -319,6 +319,9 @@ document.getElementById("regEmail").addEventListener("input", function () {
   this.classList.remove("is-valid");
   document.getElementById("emailError").style.display = "none";
   document.getElementById("submitError").style.display = "none";
+  // Reset email validation state when user starts typing
+  validationState.email = false;
+  validationState.emailExists = false;
 });
 
 document.getElementById("regName").addEventListener("input", function () {
