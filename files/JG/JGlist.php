@@ -66,10 +66,7 @@ if ($result = $lig->query($sql)) {
             echo "<center><a style='border-style: solid; padding:4px; border-width: thin;' href=index.php?cmd=JGlist>Listar todos os Jogos</a></center><br>"; ?>
 
 
-          <center>
-            <?php for ($i = 1; $i < $qp; $i++)
-              echo "<b><a href=index.php?cmd=JGlist&pag=$i>&nbsp$i&nbsp</a></b>"; ?>
-          </center>
+          <!-- Removed duplicate pagination - search functionality handles pagination via AJAX -->
         </div>
         <!-- fazer a paginação funcionar no ajax sff -->
 
