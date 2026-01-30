@@ -1,52 +1,103 @@
 <?php
+// Error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Include database connection
 require '../files/cone.php';
 
+// Include TCPDF library
 require("tcpdf_include.php");
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
-$pdf->AddPage();
 
-$sql = "select Utilizadores.*,Tipo_de_utilizador.*,Produtores.* from Utilizadores,Tipo_de_utilizador,Produtores where Utilizadores.codtipoUti=Tipo_de_utilizador.codtipoUti and Codigo_Produtor=empresa";
-$res = $lig->query($sql);
-if ($res = mysqli_query($lig, $sql)) {
-    if (mysqli_num_rows($res) > 0) {
-
-        $html = "<h1>Listagem de Utilizadores do site Games Library</h1><br><br>
-        <table>
-             <tr>
-             <th>cod</th>
-             <th>Tipo</th>
-             <th>Login</th>
-             <th>Nome</th>
-            <th>data nasc</th>
-            <th>email</th>
-            <th>estados</th>
-            <th>Empresa</th>
-        </tr>";
-    while($row = mysqli_fetch_array($res)){
-          $html.="<tr>
-            <td> " . $row['codUti'] . "</td>
-			<td>" . $row['dsg'] . "</td>
-            <td>" . $row['Login'] . "</td>
-            <td>" . $row['Nome_Utilizador'] . "</td>
-            <td>" . $row['nasc'] . "</td>
-            <td>" . $row['email'] . "</td>";
-			if($row['ContaAtiva']==1)
-            $html.="<td> Ativo </td>";
-			else if($row['ContaAtiva']==0)
-			$html.="<td> inativo </td>";
-            $html.="<td>" . $row['Nome_Produtor'] . "</td>
-            </tr>";
-			}
-            $html.="</table>";
-	} else {
-		$html="Não foi encontrado resultados para a Listagem de Utilizadores do site Games Library";
-	}
-} else {
-	$html="ERROR: Could not able to execute $sql. " . mysqli_error($lig);
+try {
+    // Create new PDF document
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+    
+    // Set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor(PDF_AUTHOR);
+    $pdf->SetTitle('Listagem de Utilizadores - Games Library');
+    $pdf->SetSubject('Relatório de Utilizadores');
+    $pdf->SetKeywords('TCPDF, PDF, Games Library, Utilizadores');
+    
+    // Set header and footer fonts
+    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+    
+    // Set default monospaced font
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+    
+    // Set margins
+    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+    
+    // Set auto page breaks
+    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+    
+    // Set image scale factor
+    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+    
+    // Set font
+    $pdf->SetFont('helvetica', 'B', 14);
+    
+    // Add a page
+    $pdf->AddPage();
+    
+    // Set font for content
+    $pdf->SetFont('helvetica', '', 10);
+    
+    // SQL query to get user data
+    $sql = "SELECT Utilizadores.*, Tipo_de_utilizador.*, Produtores.* 
+            FROM Utilizadores, Tipo_de_utilizador, Produtores 
+            WHERE Utilizadores.codtipoUti = Tipo_de_utilizador.codtipoUti 
+            AND Codigo_Produtor = empresa";
+    
+    $result = mysqli_query($lig, $sql);
+    
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            // Create HTML content for the PDF
+            $html = '<h1 style="text-align:center; color:#f82249;">Listagem de Utilizadores do site Games Library</h1><br><br>
+            <table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%;">
+                 <tr style="background-color:#f0f0f0; font-weight:bold;">
+                 <th style="width:5%;">Código</th>
+                 <th style="width:15%;">Tipo</th>
+                 <th style="width:15%;">Login</th>
+                 <th style="width:20%;">Nome</th>
+                <th style="width:12%;">Data Nasc.</th>
+                <th style="width:20%;">Email</th>
+                <th style="width:8%;">Estado</th>
+                <th style="width:15%;">Empresa</th>
+            </tr>';
+            
+            while($row = mysqli_fetch_array($result)) {
+                $estado = ($row['ContaAtiva'] == 1) ? 'Ativo' : 'Inativo';
+                $html .= '<tr>
+                    <td>' . $row['codUti'] . '</td>
+                    <td>' . $row['dsg'] . '</td>
+                    <td>' . $row['Login'] . '</td>
+                    <td>' . $row['Nome_Utilizador'] . '</td>
+                    <td>' . $row['nasc'] . '</td>
+                    <td>' . $row['email'] . '</td>
+                    <td>' . $estado . '</td>
+                    <td>' . $row['Nome_Produtor'] . '</td>
+                    </tr>';
+            }
+            $html .= '</table>';
+        } else {
+            $html = '<h2 style="text-align:center; color:#f82249;">Não foram encontrados resultados para a Listagem de Utilizadores do site Games Library</h2>';
+        }
+    } else {
+        $html = '<h2 style="text-align:center; color:red;">ERROR: Could not execute query. ' . mysqli_error($lig) . '</h2>';
+    }
+    
+    // Output HTML content
+    $pdf->writeHTML($html, true, false, true, false, '');
+    
+    // Close and output PDF document
+    $pdf->Output('relatorio_utilizadores.pdf', 'I');
+    
+} catch (Exception $e) {
+    die('Error generating PDF: ' . $e->getMessage());
 }
-
-
-/*Conteúdo que irá aparecer no PDF*/
-$pdf->writeHTMLCell(0,0, '', '', $html, 0, 1, 0, true, '', true);
-$pdf->Output('example_001.pdf', 'I');
