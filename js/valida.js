@@ -239,7 +239,8 @@ function checkEmailExists(email, callback) {
     }
   };
 
-  xmlhttp.open("GET", "files/AJAX/existeEmail.php?m=" + email, true);
+  // Use registration-specific endpoint that doesn't require user code
+  xmlhttp.open("GET", "files/AJAX/existeEmailReg.php?m=" + email, true);
   xmlhttp.send();
 }
 
