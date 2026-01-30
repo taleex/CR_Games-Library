@@ -979,15 +979,15 @@ body.modal-open {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 575px) {
   #bc h1 {
-    font-size: 28px;
+    font-size: 32px;
   }
   #bc p {
-    font-size: 16px;
+    font-size: 15px;
   }
   
-  /* Extra small mobile styles */
+  /* Small mobile styles (575px - 395px) */
   .search-input {
     font-size: 16px; /* Prevent zoom on iOS */
   }
@@ -1011,11 +1011,18 @@ body.modal-open {
   }
   
   .game-image-container {
-    height: 160px;
+    height: 200px; /* Match the card height better */
+    width: 100%;
+  }
+  
+  .game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   .game-title {
-    font-size: 14px;
+    font-size: 15px;
   }
   
   .game-producer {
@@ -1033,6 +1040,61 @@ body.modal-open {
   .game-link {
     padding: 6px 12px;
     font-size: 12px;
+  }
+}
+
+@media (max-width: 395px) {
+  #bc h1 {
+    font-size: 28px;
+  }
+  #bc p {
+    font-size: 14px;
+  }
+  
+  /* Extra small mobile styles */
+  .pagination-container {
+    gap: 3px;
+  }
+  
+  .page-link {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  
+  .game-card {
+    min-height: 300px;
+  }
+  
+  .game-image-container {
+    height: 180px; /* Slightly smaller for very small screens */
+    width: 100%;
+  }
+  
+  .game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .game-title {
+    font-size: 14px;
+  }
+  
+  .game-producer {
+    font-size: 10px;
+  }
+  
+  .game-details {
+    padding: 12px;
+  }
+  
+  .game-overlay {
+    padding: 12px;
+  }
+  
+  .game-link {
+    padding: 5px 10px;
+    font-size: 11px;
   }
 }
 
