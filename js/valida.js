@@ -364,10 +364,10 @@ document.getElementById("regEmail").addEventListener("input", function () {
   this.classList.remove("is-valid");
   document.getElementById("emailError").style.display = "none";
   document.getElementById("submitError").style.display = "none";
-  // Reset email validation state when user starts typing
-  validationState.email = false;
+  // Only reset emailExists flag when user types, keep email flag as is
+  // This prevents blocking form submission while allowing error clearing
   validationState.emailExists = false;
-  // Also trigger immediate validation on input
+  // Trigger immediate validation on input
   validateEmailImmediate(this);
 });
 

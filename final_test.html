@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Email Validation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="email"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .error { color: red; font-size: 14px; margin-top: 5px; display: none; }
+        .success { color: green; font-size: 14px; margin-top: 5px; display: none; }
+        .status { margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 4px; }
+        .test-section { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px; }
+        button { margin-right: 10px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .instructions { background: #e9ecef; padding: 15px; border-radius: 4px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Final Email Validation Test</h2>
+    <div class="instructions">
+        <h3>Test Instructions:</h3>
+        <ol>
+            <li>Enter an email that "exists" (like test@example.com)</li>
+            <li>Wait for the error message "Este email já está em uso"</li>
+            <li>Change the email to something new (like newuser@example.com)</li>
+            <li>Verify the error message disappears immediately</li>
+            <li>Test that the form would allow submission with the new email</li>
+        </ol>
+    </div>
+    
+    <div class="form-group">
+        <label for="testEmail">Email:</label>
+        <input type="email" id="testEmail" placeholder="Enter an email address">
+        <div id="emailError" class="error">Este email já está em uso</div>
+        <div id="emailSuccess" class="success">Email disponível</div>
+    </div>
+    
+    <div class="status">
+        <h4>Validation State:</h4>
+        <p>Email Valid: <span id="stateEmail">false</span></p>
+        <p>Email Exists: <span id="stateExists">false</span></p>
+        <p>AJAX Response: <span id="ajaxResponse">-</span></p>
+    </div>
+    
+    <div class="test-section">
+        <h3>Test Scenarios:</h3>
+        <button onclick="simulateScenario1()">Scenario 1: Existing → New Email</button>
+        <button onclick="simulateScenario2()">Scenario 2: Clear and Test</button>
+        <button onclick="clearAll()">Clear All</button>
+    </div>
+
+    <script>
+        // Simulate the validation state object
+        var validationState = {
+            email: false,
+            emailExists: false
+        };
+
+        // Simulate the checkEmailExists function with mock responses
+        function checkEmailExists(email, callback) {
+            // Mock server response - simulate some emails are "taken"
+            const takenEmails = ['test@example.com', 'user@domain.com', 'admin@test.com', 'existing@user.com'];
+            const exists = takenEmails.includes(email.toLowerCase());
+            
+            // Simulate network delay
+            setTimeout(() => {
+                const response = exists ? "email já se encontra registado no sistema" : "Email disponível";
+                document.getElementById("ajaxResponse").textContent = "Response: '" + response + "'";
+                callback(exists);
+            }, 300);
+        }
+
+        // Enhanced email validation that resets state immediately
+        function validateEmailImmediate(input) {
+            const email = input.value;
+            const errorElement = document.getElementById("emailError");
+            const successElement = document.getElementById("emailSuccess");
+            const emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+            // Remove previous error styling
+            errorElement.style.display = "none";
+            successElement.style.display = "none";
+
+            if (email === "") {
+                errorElement.textContent = "Campo obrigatório";
+                errorElement.style.display = "block";
+                validationState.email = false;
+                validationState.emailExists = false;
+                updateStatus();
+                return false;
+            }
+
+            if (emailRegex.test(email)) {
+                // Check if email already exists
+                checkEmailExists(email, function (exists) {
+                    if (exists) {
+                        errorElement.textContent = "Este email já está em uso";
+                        errorElement.style.display = "block";
+                        validationState.email = false;
+                        validationState.emailExists = true;
+                    } else {
+                        successElement.style.display = "block";
+                        validationState.email = true;
+                        validationState.emailExists = false;
+                    }
+                    updateStatus();
+                });
+                return true;
+            } else {
+                errorElement.textContent = "Formato de E-mail inválido";
+                errorElement.style.display = "block";
+                validationState.email = false;
+                validationState.emailExists = false;
+                updateStatus();
+                return false;
+            }
+        }
+
+        function updateStatus() {
+            document.getElementById("stateEmail").textContent = validationState.email;
+            document.getElementById("stateExists").textContent = validationState.emailExists;
+        }
+
+        // Add event listener for input (simulating the fix)
+        document.getElementById("testEmail").addEventListener("input", function () {
+            // Reset emailExists flag when user types (this is the key fix)
+            validationState.emailExists = false;
+            // Trigger immediate validation on input
+            validateEmailImmediate(this);
+        });
+
+        // Test scenarios
+        function simulateScenario1() {
+            const input = document.getElementById("testEmail");
+            
+            // Step 1: Enter existing email
+            input.value = "test@example.com";
+            validateEmailImmediate(input);
+            
+            setTimeout(() => {
+                // Step 2: Change to new email (this should clear the error immediately)
+                input.value = "newuser@example.com";
+                // Simulate the input event (this triggers our fix)
+                const event = new Event('input', { bubbles: true });
+                input.dispatchEvent(event);
+            }, 500);
+        }
+
+        function simulateScenario2() {
+            const input = document.getElementById("testEmail");
+            input.value = "";
+            validationState.email = false;
+            validationState.emailExists = false;
+            updateStatus();
+            document.getElementById("emailError").style.display = "none";
+            document.getElementById("emailSuccess").style.display = "none";
+            document.getElementById("ajaxResponse").textContent = "-";
+            
+            setTimeout(() => {
+                input.value = "available@example.com";
+                const event = new Event('input', { bubbles: true });
+                input.dispatchEvent(event);
+            }, 100);
+        }
+
+        function clearAll() {
+            const input = document.getElementById("testEmail");
+            input.value = "";
+            validationState.email = false;
+            validationState.emailExists = false;
+            updateStatus();
+            document.getElementById("emailError").style.display = "none";
+            document.getElementById("emailSuccess").style.display = "none";
+            document.getElementById("ajaxResponse").textContent = "-";
+        }
+    </script>
+</body>
+</html>
