@@ -40,7 +40,7 @@ $sqlsug = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtor
   <div class="container">
 
     <?php for ($i = 0; $i < 2; $i++) echo "<br>"; ?>
-    <div style="background-color:rgba(0, 0, 0, 0.5);" class="card flex-md-row mb-4 box-shadow h-md-250">
+    <div style="background-color:rgba(0, 0, 0, 0.5);" class="card flex-md-row mb-4 box-shadow h-md-250" style="margin: 0 15px;">
       <div class="card-body d-flex flex-column align-items-start">
         <h4 style="color: White"><b><?php echo $lin['Nome_Jogo']; ?> de <a href='index.php?cmd=PRlist&cod=<?php echo $lin['Codigo_Produtor']; ?>'><?php echo $lin['Nome_Produtor']; ?> </a></b></h4>
         <h6 style="color: White"><b>Genero: <a href='index.php?cmd=TJlist&cod=<?php echo $lin['CodTipoJogo']; ?>'><?php echo $lin['Genero']; ?></a></b></h6>
@@ -66,11 +66,11 @@ $sqlsug = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtor
           <div class="container">
             <h3 style="border-radius: 25px;background-color: White;color: #f82249"><center><a style="margin: 15px;"></a><b>Outros Jogos da franquia</b></center></h3>
 
-            <div class="row">
+            <div class="row" style="margin: 0 -15px;">
 
               <?php while ($linsug = $resug->fetch_array()) { ?>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="speaker">
+                <div class="col-lg-4 col-md-4 col-sm-4" style="padding: 0 15px;">
+                  <div class="speaker" style="margin-bottom: 20px;">
                     <?php
                     echo "<img src='" . 'backoffice/3P2/' . $linsug['IMGjg'] . "' alt='" . $linsug['Nome_Jogo'] . "' class='img-fluid game-image-responsive' style='width: 100%; height: 200px; object-fit: cover;'/>
                         <div class='details' style='background-color: rgba(255, 0, 0, 0.5);'>";
