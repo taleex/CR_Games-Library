@@ -276,7 +276,7 @@ else
 						</div>
 						<div class="form-group">
 							<label for="regEmail">Email</label>
-							<input type="email" class="form-control" id="regEmail" name="email" placeholder="Digite seu email" onblur="validateEmail(this)" required>
+							<input type="email" class="form-control" id="regEmail" name="email" placeholder="Digite seu email" oninput="validateEmailImmediate(this)" onblur="validateEmail(this)" required>
 							<small id="emailError" class="form-text text-danger" style="display: none;"></small>
 						</div>
 						<div class="form-group">

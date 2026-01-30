@@ -49,6 +49,47 @@ function validateEmail(input) {
   }
 }
 
+// Enhanced email validation that resets state immediately
+function validateEmailImmediate(input) {
+  const email = input.value;
+  const errorElement = document.getElementById("emailError");
+  const emailRegex =
+    /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+  // Reset validation state immediately when user types
+  validationState.email = false;
+  validationState.emailExists = false;
+
+  // Remove previous error styling
+  input.classList.remove("is-invalid");
+  input.classList.remove("is-valid");
+  errorElement.style.display = "none";
+
+  if (email === "") {
+    showError(input, errorElement, "Campo obrigatório");
+    return false;
+  }
+
+  if (emailRegex.test(email)) {
+    // Check if email already exists
+    checkEmailExists(email, function (exists) {
+      if (exists) {
+        showError(input, errorElement, "Este email já está em uso");
+        validationState.email = false;
+        validationState.emailExists = true;
+      } else {
+        showSuccess(input);
+        validationState.email = true;
+        validationState.emailExists = false;
+      }
+    });
+    return true;
+  } else {
+    showError(input, errorElement, "Formato de E-mail inválido");
+    return false;
+  }
+}
+
 function validateLogin(input) {
   const login = input.value;
   const errorElement = document.getElementById("loginError");
@@ -322,6 +363,8 @@ document.getElementById("regEmail").addEventListener("input", function () {
   // Reset email validation state when user starts typing
   validationState.email = false;
   validationState.emailExists = false;
+  // Also trigger immediate validation on input
+  validateEmailImmediate(this);
 });
 
 document.getElementById("regName").addEventListener("input", function () {
