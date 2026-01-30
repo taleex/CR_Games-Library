@@ -259,7 +259,7 @@ Games Library/
 ## 📞 Suporte Técnico
 
 ### Contatos
-- **Desenvolvedor**: [Informação do desenvolvedor]
+- **Desenvolvedor**: Taleex
 - **Documentação**: docs/ (pasta de documentação)
 - **Issues**: Sistema de reporte de bugs interno
 
