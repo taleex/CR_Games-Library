@@ -55,7 +55,7 @@ $sqlsug = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtor
           } ?>
         </div>
       </div>
-      <?php echo "<img src=" . 'backoffice/3P2/' . $lin['IMGjg'] . " width='500' class='img-fluid'>"; ?>
+      <img src="<?php echo 'backoffice/3P2/' . $lin['IMGjg']; ?>" alt="<?php echo $lin['Nome_Jogo']; ?>" class="img-fluid game-image-responsive" style="width: 100%; height: 350px; object-fit: cover;">
     </div>
 
     <?php
@@ -72,7 +72,7 @@ $sqlsug = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtor
                 <div class="col-lg-4 col-md-4 col-sm-4">
                   <div class="speaker">
                     <?php
-                    echo "<img src=" . 'backoffice/3P2/' . $linsug['IMGjg'] . "  height='200' width='350' alt='Speaker 1'/>
+                    echo "<img src='" . 'backoffice/3P2/' . $linsug['IMGjg'] . "' alt='" . $linsug['Nome_Jogo'] . "' class='img-fluid game-image-responsive' style='width: 100%; height: 200px; object-fit: cover;'/>
                         <div class='details' style='background-color: rgba(255, 0, 0, 0.5);'>";
                     echo "<h3><a href='index.php?cmd=JGinf&cod=$linsug[Codigo_Jogo]'>" . $linsug['Nome_Jogo'] . "</a>";
                     echo "<p><a href='index.php?cmd=PRlist&cod=" . $linsug['Codigo_Produtor'] . "'>" . $linsug['Nome_Produtor'] . "</a></p>";

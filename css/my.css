@@ -1128,6 +1128,23 @@ body.modal-open {
   }
 }
 
+/* Responsive Image Classes for All Pages */
+.game-image-responsive {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.game-image-container-responsive {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
 /* JGinf.php specific styles - Mobile responsive only */
 @media (max-width: 995px) {
   .card.flex-md-row {
@@ -1154,6 +1171,7 @@ body.modal-open {
     height: auto;
     margin-bottom: 20px;
     border-radius: 8px;
+    max-width: 100%;
   }
   
   .card-body div {
@@ -1187,5 +1205,93 @@ body.modal-open {
   
   .card-body {
     padding: 15px;
+  }
+}
+
+/* Responsive Image Styles for All Screen Sizes */
+/* Small screens (sm: <576px) */
+@media (max-width: 575px) {
+  .game-image-container-responsive {
+    height: 180px;
+  }
+  
+  .speaker img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover;
+  }
+}
+
+/* Medium screens (md: 576px-991px) */
+@media (min-width: 576px) and (max-width: 991px) {
+  .game-image-container-responsive {
+    height: 200px;
+  }
+  
+  .speaker img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover;
+  }
+}
+
+/* Large screens (lg: 992px-1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .game-image-container-responsive {
+    height: 220px;
+  }
+  
+  .speaker img {
+    width: 100% !important;
+    height: 220px !important;
+    object-fit: cover;
+  }
+}
+
+/* Extra large screens (xl: 1200px+) */
+@media (min-width: 1200px) {
+  .game-image-container-responsive {
+    height: 240px;
+  }
+  
+  .speaker img {
+    width: 100% !important;
+    height: 240px !important;
+    object-fit: cover;
+  }
+}
+
+/* JGinf.php main image responsive styles */
+@media (max-width: 995px) {
+  .card.flex-md-row .card-body + img {
+    width: 100% !important;
+    height: 300px !important;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card.flex-md-row .card-body + img {
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .card.flex-md-row .card-body + img {
+    height: 200px !important;
+  }
+}
+
+/* Background image responsive optimization */
+.full-height {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .full-height {
+    background-attachment: scroll;
   }
 }
