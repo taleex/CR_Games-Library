@@ -53,6 +53,7 @@ function validateEmail(input) {
 function validateEmailImmediate(input) {
   const email = input.value;
   const errorElement = document.getElementById("emailError");
+  const loadingElement = document.getElementById("emailLoading");
   const emailRegex =
     /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
@@ -60,6 +61,7 @@ function validateEmailImmediate(input) {
   input.classList.remove("is-invalid");
   input.classList.remove("is-valid");
   errorElement.style.display = "none";
+  loadingElement.style.display = "none";
 
   if (email === "") {
     showError(input, errorElement, "Campo obrigatório");
@@ -69,8 +71,12 @@ function validateEmailImmediate(input) {
   }
 
   if (emailRegex.test(email)) {
+    // Show loading indicator
+    loadingElement.style.display = "block";
+
     // Check if email already exists
     checkEmailExists(email, function (exists) {
+      loadingElement.style.display = "none";
       if (exists) {
         showError(input, errorElement, "Este email já está em uso");
         validationState.email = false;
@@ -232,11 +238,34 @@ function checkEmailExists(email, callback) {
     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
 
+  // Set timeout for AJAX request (10 seconds)
+  xmlhttp.timeout = 10000;
+
   xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      const exists = xmlhttp.responseText.trim() !== "";
-      callback(exists);
+    if (xmlhttp.readyState == 4) {
+      if (xmlhttp.status == 200) {
+        const exists = xmlhttp.responseText.trim() !== "";
+        callback(exists);
+      } else {
+        // Handle AJAX error - assume email is available as fallback
+        console.warn(
+          "Email validation AJAX failed, assuming email is available",
+        );
+        callback(false);
+      }
     }
+  };
+
+  // Handle timeout
+  xmlhttp.ontimeout = function () {
+    console.warn("Email validation timeout, assuming email is available");
+    callback(false);
+  };
+
+  // Handle network errors
+  xmlhttp.onerror = function () {
+    console.warn("Email validation network error, assuming email is available");
+    callback(false);
   };
 
   // Use registration-specific endpoint that doesn't require user code
@@ -251,11 +280,34 @@ function checkLoginExists(login, callback) {
     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
 
+  // Set timeout for AJAX request (10 seconds)
+  xmlhttp.timeout = 10000;
+
   xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      const exists = xmlhttp.responseText.trim() !== "";
-      callback(exists);
+    if (xmlhttp.readyState == 4) {
+      if (xmlhttp.status == 200) {
+        const exists = xmlhttp.responseText.trim() !== "";
+        callback(exists);
+      } else {
+        // Handle AJAX error - assume login is available as fallback
+        console.warn(
+          "Login validation AJAX failed, assuming login is available",
+        );
+        callback(false);
+      }
     }
+  };
+
+  // Handle timeout
+  xmlhttp.ontimeout = function () {
+    console.warn("Login validation timeout, assuming login is available");
+    callback(false);
+  };
+
+  // Handle network errors
+  xmlhttp.onerror = function () {
+    console.warn("Login validation network error, assuming login is available");
+    callback(false);
   };
 
   xmlhttp.open("GET", "files/AJAX/existeLoginReg.php?q=" + login, true);
@@ -305,11 +357,13 @@ document
     }
 
     // Check if email and login existence validations are complete
-    // Allow submission if validation is in progress (email/login are false but not due to conflicts)
-    if (
-      (!validationState.email && !validationState.emailExists) ||
-      (!validationState.login && !validationState.loginExists)
-    ) {
+    // Improved logic: Allow submission if we have a definitive answer (either exists or doesn't exist)
+    const emailValidationComplete =
+      validationState.email || validationState.emailExists;
+    const loginValidationComplete =
+      validationState.login || validationState.loginExists;
+
+    if (!emailValidationComplete || !loginValidationComplete) {
       e.preventDefault();
       submitError.textContent =
         "Por favor, aguarde a validação do email e login.";

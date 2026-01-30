@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Email Validation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="email"], input[type="text"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .error { color: red; font-size: 14px; margin-top: 5px; display: none; }
+        .success { color: green; font-size: 14px; margin-top: 5px; display: none; }
+        .loading { color: #007bff; font-size: 14px; margin-top: 5px; display: none; }
+        .status { margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 4px; }
+        .test-section { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px; }
+        button { margin-right: 10px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .instructions { background: #e9ecef; padding: 15px; border-radius: 4px; margin-bottom: 20px; }
+        .test-result { margin-top: 10px; padding: 10px; border-radius: 4px; }
+        .test-pass { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .test-fail { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h2>Comprehensive Email Validation Test</h2>
+    <div class="instructions">
+        <h3>Test Instructions:</h3>
+        <ol>
+            <li><strong>Test 1:</strong> Enter an email that "exists" (like test@example.com)</li>
+            <li><strong>Test 2:</strong> Wait for the error message "Este email já está em uso"</li>
+            <li><strong>Test 3:</strong> Change the email to something new (like newuser@example.com)</li>
+            <li><strong>Test 4:</strong> Verify the error message disappears immediately and loading indicator shows</li>
+            <li><strong>Test 5:</strong> Test form submission with valid data</li>
+            <li><strong>Test 6:</strong> Test with JavaScript disabled (HTML5 validation should work)</li>
+        </ol>
+    </div>
+    
+    <div class="form-group">
+        <label for="testEmail">Email:</label>
+        <input type="email" id="testEmail" placeholder="Enter an email address" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Formato de email inválido">
+        <div id="emailError" class="error">Este email já está em uso</div>
+        <div id="emailLoading" class="loading">Verificando disponibilidade...</div>
+        <div id="emailSuccess" class="success">Email disponível</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="testLogin">Login:</label>
+        <input type="text" id="testLogin" placeholder="Enter a login" required minlength="3" maxlength="50">
+        <div id="loginError" class="error">Este login já está em uso</div>
+        <div id="loginSuccess" class="success">Login disponível</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="testPassword">Password:</label>
+        <input type="password" id="testPassword" placeholder="Enter a password" required minlength="6">
+        <div id="passwordError" class="error">Password deve ter pelo menos 6 caracteres</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="testConfirmPassword">Confirm Password:</label>
+        <input type="password" id="testConfirmPassword" placeholder="Confirm password" required>
+        <div id="confirmPasswordError" class="error">Passwords não coincidem</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="testName">Full Name:</label>
+        <input type="text" id="testName" placeholder="Enter full name" required pattern="[a-zA-Z]+ [a-zA-Z]+" title="Digite o primeiro e último nome">
+        <div id="nameError" class="error">Formato de Nome inválido (Primeiro e Último nome)</div>
+    </div>
+    
+    <button onclick="simulateCompleteTest()">Run Complete Test</button>
+    <button onclick="clearAll()">Clear All</button>
+    
+    <div class="status">
+        <h4>Validation State:</h4>
+        <p>Email Valid: <span id="stateEmail">false</span></p>
+        <p>Email Exists: <span id="stateExists">false</span></p>
+        <p>Login Valid: <span id="stateLogin">false</span></p>
+        <p>Login Exists: <span id="stateLoginExists">false</span></p>
+        <p>Form Valid: <span id="stateForm">false</span></p>
+    </div>
+    
+    <div id="testResults" class="test-section">
+        <h3>Test Results:</h3>
+        <div id="testOutput"></div>
+    </div>
+
+    <script>
+        // Simulate the validation state object
+        var validationState = {
+            email: false,
+            emailExists: false,
+            login: false,
+            loginExists: false,
+            name: false,
+            password: false,
+            confirmPassword: false
+        };
+
+        // Simulate the checkEmailExists function with mock responses and timing
+        function checkEmailExists(email, callback) {
+            // Mock server response - simulate some emails are "taken"
+            const takenEmails = ['test@example.com', 'user@domain.com', 'admin@test.com', 'existing@user.com'];
+            const exists = takenEmails.includes(email.toLowerCase());
+            
+            // Simulate network delay (1-3 seconds)
+            const delay = Math.floor(Math.random() * 2000) + 1000;
+            
+            setTimeout(() => {
+                const response = exists ? "email já se encontra registado no sistema" : "Email disponível";
+                console.log("Email validation response:", response);
+                callback(exists);
+            }, delay);
+        }
+
+        function checkLoginExists(login, callback) {
+            // Mock server response - simulate some logins are "taken"
+            const takenLogins = ['admin', 'user', 'test', 'existing'];
+            const exists = takenLogins.includes(login.toLowerCase());
+            
+            // Simulate network delay (1-3 seconds)
+            const delay = Math.floor(Math.random() * 2000) + 1000;
+            
+            setTimeout(() => {
+                const response = exists ? "Login ocupado" : "Login disponível";
+                console.log("Login validation response:", response);
+                callback(exists);
+            }, delay);
+        }
+
+        // Enhanced email validation that resets state immediately
+        function validateEmailImmediate(input) {
+            const email = input.value;
+            const errorElement = document.getElementById("emailError");
+            const loadingElement = document.getElementById("emailLoading");
+            const successElement = document.getElementById("emailSuccess");
+            const emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+            // Remove previous error styling
+            errorElement.style.display = "none";
+            successElement.style.display = "none";
+            loadingElement.style.display = "none";
+
+            if (email === "") {
+                errorElement.textContent = "Campo obrigatório";
+                errorElement.style.display = "block";
+                validationState.email = false;
+                validationState.emailExists = false;
+                updateStatus();
+                return false;
+            }
+
+            if (emailRegex.test(email)) {
+                // Show loading indicator
+                loadingElement.style.display = "block";
+                
+                // Check if email already exists
+                checkEmailExists(email, function (exists) {
+                    loadingElement.style.display = "none";
+                    if (exists) {
+                        errorElement.textContent = "Este email já está em uso";
+                        errorElement.style.display = "block";
+                        validationState.email = false;
+                        validationState.emailExists = true;
+                    } else {
+                        successElement.style.display = "block";
+                        validationState.email = true;
+                        validationState.emailExists = false;
+                    }
+                    updateStatus();
+                });
+                return true;
+            } else {
+                errorElement.textContent = "Formato de E-mail inválido";
+                errorElement.style.display = "block";
+                validationState.email = false;
+                validationState.emailExists = false;
+                updateStatus();
+                return false;
+            }
+        }
+
+        function validateLogin(input) {
+            const login = input.value;
+            const errorElement = document.getElementById("loginError");
+            const successElement = document.getElementById("loginSuccess");
+
+            // Remove previous error styling
+            errorElement.style.display = "none";
+            successElement.style.display = "none";
+
+            if (login.length === 0) {
+                errorElement.textContent = "Campo obrigatório";
+                errorElement.style.display = "block";
+                validationState.login = false;
+                validationState.loginExists = false;
+                updateStatus();
+                return false;
+            }
+
+            // Check if login already exists
+            checkLoginExists(login, function (exists) {
+                if (exists) {
+                    errorElement.textContent = "Este login já está em uso";
+                    errorElement.style.display = "block";
+                    validationState.login = false;
+                    validationState.loginExists = true;
+                } else {
+                    successElement.style.display = "block";
+                    validationState.login = true;
+                    validationState.loginExists = false;
+                }
+                updateStatus();
+            });
+            return true;
+        }
+
+        function validateName(input) {
+            const name = input.value;
+            const errorElement = document.getElementById("nameError");
+            const nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
+
+            // Remove previous error styling
+            errorElement.style.display = "none";
+
+            if (name === "") {
+                errorElement.textContent = "Campo obrigatório";
+                errorElement.style.display = "block";
+                validationState.name = false;
+                updateStatus();
+                return false;
+            }
+
+            if (nameRegex.test(name)) {
+                validationState.name = true;
+                updateStatus();
+                return true;
+            } else {
+                errorElement.textContent = "Formato de Nome inválido (Primeiro e Último nome)";
+                errorElement.style.display = "block";
+                validationState.name = false;
+                updateStatus();
+                return false;
+            }
+        }
+
+        function validatePassword(input) {
+            const password = input.value;
+            const errorElement = document.getElementById("passwordError");
+
+            // Remove previous error styling
+            errorElement.style.display = "none";
+
+            if (password === "") {
+                errorElement.textContent = "Campo obrigatório";
+                errorElement.style.display = "block";
+                validationState.password = false;
+                updateStatus();
+                return false;
+            }
+
+            if (password.length >= 6) {
+                validationState.password = true;
+                updateStatus();
+                return true;
+            } else {
+                errorElement.textContent = "A password deve ter pelo menos 6 caracteres";
+                errorElement.style.display = "block";
+                validationState.password = false;
+                updateStatus();
+                return false;
+            }
+        }
+
+        function validateConfirmPassword(input) {
+            const confirmPassword = input.value;
+            const password = document.getElementById("testPassword").value;
+            const errorElement = document.getElementById("confirmPasswordError");
+
+            // Remove previous error styling
+            errorElement.style.display = "none";
+
+            if (confirmPassword === "") {
+                errorElement.textContent = "Campo obrigatório";
+                errorElement.style.display = "block";
+                validationState.confirmPassword = false;
+                updateStatus();
+                return false;
+            }
+
+            if (confirmPassword === password) {
+                validationState.confirmPassword = true;
+                updateStatus();
+                return true;
+            } else {
+                errorElement.textContent = "As passwords não coincidem";
+                errorElement.style.display = "block";
+                validationState.confirmPassword = false;
+                updateStatus();
+                return false;
+            }
+        }
+
+        function updateStatus() {
+            document.getElementById("stateEmail").textContent = validationState.email;
+            document.getElementById("stateExists").textContent = validationState.emailExists;
+            document.getElementById("stateLogin").textContent = validationState.login;
+            document.getElementById("stateLoginExists").textContent = validationState.loginExists;
+            
+            // Check if form is valid
+            const formValid = Object.values(validationState).every(value => value === true);
+            document.getElementById("stateForm").textContent = formValid;
+        }
+
+        function addTestResult(message, passed) {
+            const output = document.getElementById("testOutput");
+            const div = document.createElement("div");
+            div.className = "test-result " + (passed ? "test-pass" : "test-fail");
+            div.textContent = message;
+            output.appendChild(div);
+        }
+
+        // Add event listeners for input
+        document.getElementById("testEmail").addEventListener("input", function () {
+            // Reset emailExists flag when user types (this is the key fix)
+            validationState.emailExists = false;
+            // Trigger immediate validation on input
+            validateEmailImmediate(this);
+        });
+
+        document.getElementById("testLogin").addEventListener("input", function () {
+            validationState.loginExists = false;
+            validateLogin(this);
+        });
+
+        document.getElementById("testName").addEventListener("input", function () {
+            validateName(this);
+        });
+
+        document.getElementById("testPassword").addEventListener("input", function () {
+            validatePassword(this);
+        });
+
+        document.getElementById("testConfirmPassword").addEventListener("input", function () {
+            validateConfirmPassword(this);
+        });
+
+        // Test scenarios
+        function simulateCompleteTest() {
+            const output = document.getElementById("testOutput");
+            output.innerHTML = ""; // Clear previous results
+            
+            addTestResult("Teste 1: Iniciando teste completo...", true);
+            
+            const input = document.getElementById("testEmail");
+            
+            // Step 1: Enter existing email
+            addTestResult("Teste 2: Digitando email existente...", true);
+            input.value = "test@example.com";
+            validateEmailImmediate(input);
+            
+            setTimeout(() => {
+                addTestResult("Teste 3: Verificando se erro aparece...", true);
+                const errorVisible = document.getElementById("emailError").style.display === "block";
+                addTestResult("Erro apareceu corretamente: " + errorVisible, errorVisible);
+                
+                // Step 2: Change to new email (this should clear the error immediately)
+                addTestResult("Teste 4: Mudando para email novo...", true);
+                input.value = "newuser@example.com";
+                
+                // Simulate the input event (this triggers our fix)
+                const event = new Event('input', { bubbles: true });
+                input.dispatchEvent(event);
+                
+                setTimeout(() => {
+                    addTestResult("Teste 5: Verificando se erro desaparece imediatamente...", true);
+                    const errorCleared = document.getElementById("emailError").style.display === "none";
+                    const loadingVisible = document.getElementById("emailLoading").style.display === "block";
+                    addTestResult("Erro desapareceu imediatamente: " + errorCleared, errorCleared);
+                    addTestResult("Indicador de carregamento apareceu: " + loadingVisible, loadingVisible);
+                    
+                    setTimeout(() => {
+                        addTestResult("Teste 6: Verificando resultado final...", true);
+                        const successVisible = document.getElementById("emailSuccess").style.display === "block";
+                        addTestResult("Email disponível mostrado corretamente: " + successVisible, successVisible);
+                        
+                        addTestResult("Teste concluído! Verifique os resultados acima.", true);
+                    }, 2000);
+                }, 100);
+            }, 2000);
+        }
+
+        function clearAll() {
+            const inputs = document.querySelectorAll("input");
+            inputs.forEach(input => input.value = "");
+            
+            validationState.email = false;
+            validationState.emailExists = false;
+            validationState.login = false;
+            validationState.loginExists = false;
+            validationState.name = false;
+            validationState.password = false;
+            validationState.confirmPassword = false;
+            
+            updateStatus();
+            
+            const elements = ["emailError", "emailLoading", "emailSuccess", "loginError", "loginSuccess", "passwordError", "confirmPasswordError", "nameError"];
+            elements.forEach(id => {
+                document.getElementById(id).style.display = "none";
+            });
+            
+            document.getElementById("testOutput").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
