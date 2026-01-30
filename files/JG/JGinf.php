@@ -37,10 +37,10 @@ $sqlsug = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtor
       Speaker Details Section
     ============================-->
 <section id="speakers-details" class="wow fadeIn full-height">
-  <div class="container">
+  <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
 
     <?php for ($i = 0; $i < 2; $i++) echo "<br>"; ?>
-    <div style="background-color:rgba(0, 0, 0, 0.5);" class="card flex-md-row mb-4 box-shadow h-md-250" style="margin: 0 15px;">
+    <div style="background-color:rgba(0, 0, 0, 0.5);" class="card flex-md-row mb-4 box-shadow h-md-250" style="margin: 0 15px; padding: 15px;">
       <div class="card-body d-flex flex-column align-items-start">
         <h4 style="color: White"><b><?php echo $lin['Nome_Jogo']; ?> de <a href='index.php?cmd=PRlist&cod=<?php echo $lin['Codigo_Produtor']; ?>'><?php echo $lin['Nome_Produtor']; ?> </a></b></h4>
         <h6 style="color: White"><b>Genero: <a href='index.php?cmd=TJlist&cod=<?php echo $lin['CodTipoJogo']; ?>'><?php echo $lin['Genero']; ?></a></b></h6>
