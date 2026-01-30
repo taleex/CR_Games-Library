@@ -71,53 +71,52 @@ if ($games_result = $lig->query($sql)) {
         <div class="section-header"><br>
           <h2 style="color: #d12141"><?php echo $lin['Genero']; ?></h2>
           <br>
-          <div class="search-container">
-            <div class="search-wrapper">
-              <input type="text" class="form-control search-input" id="pesq" name="pesquisa" onInput="return filJogosGr(this,<?php echo $c; ?>,<?php echo $co; ?>,<?php echo $pagtd; ?>);" placeholder="Pesquisar jogos...">
-            </div>
-          </div><br>
+
+          <center>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mx-auto">
+                <input type="text" class="form-control" id="pesq" name="pesquisa" onInput="return filJogosGr(this,<?php echo $c; ?>,<?php echo $co; ?>,<?php echo $pagtd; ?>);" placeholder="Pesquisar jogos...">
+              </div>
+              <br>
+
+          </center><br>
 
           <?php if ($filtro != '')
-            echo "<div class='filter-info'><a class='clear-filter' href=index.php?cmd=TJlist>Listar todos os Jogos</a></div><br>"; ?>
+            echo "<center><a style='border-style: solid; padding:4px; border-width: thin;' href=index.php?cmd=TJlist>Listar todos os Jogos</a></center><br>"; ?>
 
-          <div class="pagination-container">
+          <center>
             <?php for ($i = 1; $i < $qp; $i++)
-              echo "<a class='page-link' href=index.php?cmd=TJlist&cod=$co&pag=$i>$i</a>"; ?>
-          </div>
+              echo "<b><a href=index.php?cmd=TJlist&cod=$co&pag=$i>&nbsp$i&nbsp</a></b>"; ?>
+          </center>
         </div>
 
         <div class="container" id="GR">
-          <div class="games-grid">
+          <div class="row">
             <?php
             while ($row = $games_result->fetch_array()) {
             ?>
-              <div class="game-card">
-                <div class="game-image-container">
-                  <img src="<?php echo 'backoffice/3P2/' . $row['IMGjg']; ?>" alt="<?php echo $row['Nome_Jogo']; ?>" class="game-image">
-                  <div class="game-overlay">
-                    <a href="index.php?cmd=JGinf&cod=<?php echo $row['Codigo_Jogo']; ?>" class="game-link">Ver Detalhes</a>
-                  </div>
-                </div>
-                <div class="game-details">
-                  <h3 class="game-title">
-                    <a href="index.php?cmd=JGinf&cod=<?php echo $row['Codigo_Jogo']; ?>"><?php echo $row['Nome_Jogo']; ?></a>
-                    <?php if (isset($_SESSION['codtipoUti'])) {
-                      $sql1 = "select * from ListaDesejos where codigUti = $c and CodigoJogo ='" . $row['Codigo_Jogo'] . "'";
-                      $res1 = $lig->query($sql1);
-                      if ($res1->num_rows) {
-                        echo "<span class='wishlist-icon fa fa-minus-circle' onclick='return lid(this,$row[Codigo_Jogo],$c);' title='Remover da lista de desejos'></span>";
-                      } else {
-                        echo "<span class='wishlist-icon fa fa-plus-circle' onclick='return lid(this,$row[Codigo_Jogo],$c);' title='Adicionar à lista de desejos'></span>";
-                      }
-                    } ?>
-                  </h3>
-                  <p class="game-producer">
-                    <a href="index.php?cmd=PRlist&cod=<?php echo $row['Codigo_Produtor']; ?>"><?php echo $row['Nome_Produtor']; ?></a>
-                  </p>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="speaker">
+                  <?php echo "<img src=" . 'backoffice/3P2/' . $row['IMGjg'] . " height='200' width='350' alt='Speaker 1'/>
+                <div class='details' style='background-color: rgba(255, 0, 0, 0.5);'>";
+                  echo "<h3><a href='index.php?cmd=JGinf&cod=$row[Codigo_Jogo]'>" . $row['Nome_Jogo'] . "</a>";
+
+                  if (isset($_SESSION['codtipoUti'])) {
+                    $sql1 = "select * from ListaDesejos where codigUti = $c and CodigoJogo ='" . $row['Codigo_Jogo'] . "'";
+                    $res1 = $lig->query($sql1);
+                    if ($res1->num_rows) {
+                      echo " <span class='fa fa-minus-circle' onclick='return lid(this,$row[Codigo_Jogo],$c);'></span></h3>";
+                    } else {
+                      echo " <span class='fa fa-plus-circle' onclick='return lid(this,$row[Codigo_Jogo],$c);'></span></h3>";
+                    }
+                  }
+
+                  echo "<p><a href='index.php?cmd=PRlist&cod=" . $row['Codigo_Produtor'] . "'>" . $row['Nome_Produtor'] . "</a></p>"; ?>
                 </div>
               </div>
-            <?php } ?>
           </div>
+
+        <?php
+            } ?>
         </div>
       </section>
     </section>
