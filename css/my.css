@@ -1067,27 +1067,31 @@ body.modal-open {
 }
 
 /* JGinf.php specific styles - Mobile responsive only */
-@media (max-width: 768px) {
+@media (max-width: 995px) {
   .card.flex-md-row {
     flex-direction: column !important;
   }
   
   .card-body {
     text-align: center;
+    padding: 20px;
   }
   
   .card-body h4 {
     font-size: 18px;
+    margin-bottom: 15px;
   }
   
   .card-body h6 {
     font-size: 14px;
+    margin-bottom: 10px;
   }
   
   .card-body img {
     width: 100%;
     height: auto;
     margin-bottom: 20px;
+    border-radius: 8px;
   }
   
   .card-body div {
@@ -1095,6 +1099,13 @@ body.modal-open {
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
+    margin-top: 15px;
+  }
+  
+  /* Fix alignment issues on mobile */
+  .card-body {
+    margin: 0 auto;
+    max-width: 100%;
   }
 }
 
@@ -1110,5 +1121,9 @@ body.modal-open {
   .badge {
     font-size: 11px;
     padding: 4px 8px;
+  }
+  
+  .card-body {
+    padding: 15px;
   }
 }
