@@ -56,10 +56,6 @@ function validateEmailImmediate(input) {
   const emailRegex =
     /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
-  // Reset validation state immediately when user types
-  validationState.email = false;
-  validationState.emailExists = false;
-
   // Remove previous error styling
   input.classList.remove("is-invalid");
   input.classList.remove("is-valid");
@@ -67,6 +63,8 @@ function validateEmailImmediate(input) {
 
   if (email === "") {
     showError(input, errorElement, "Campo obrigatório");
+    validationState.email = false;
+    validationState.emailExists = false;
     return false;
   }
 
@@ -86,6 +84,8 @@ function validateEmailImmediate(input) {
     return true;
   } else {
     showError(input, errorElement, "Formato de E-mail inválido");
+    validationState.email = false;
+    validationState.emailExists = false;
     return false;
   }
 }
@@ -304,7 +304,11 @@ document
     }
 
     // Check if email and login existence validations are complete
-    if (!validationState.email || !validationState.login) {
+    // Allow submission if validation is in progress (email/login are false but not due to conflicts)
+    if (
+      (!validationState.email && !validationState.emailExists) ||
+      (!validationState.login && !validationState.loginExists)
+    ) {
       e.preventDefault();
       submitError.textContent =
         "Por favor, aguarde a validação do email e login.";
