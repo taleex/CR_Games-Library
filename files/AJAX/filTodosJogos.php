@@ -195,11 +195,14 @@ if ($result->num_rows > 0) {
 }
 echo '</div></div>';
 
-echo '<center>';
-for ($i = 1; $i <= $qp; $i++) {
-  echo "<b><a href='javascript:void(0);' onclick='filTodosJogos(document.getElementById(\"pesq\"), $c, $pag, $i);'>&nbsp;$i&nbsp;</a></b>";
+// Only show pagination if search term is empty (normal pagination)
+if (empty($p)) {
+  echo '<center>';
+  for ($i = 1; $i <= $qp; $i++) {
+    echo "<b><a href='javascript:void(0);' onclick='filTodosJogos(document.getElementById(\"pesq\"), $c, $pag, $i);'>&nbsp;$i&nbsp;</a></b>";
+  }
+  echo '</center>';
 }
-echo '</center>';
 
 $stmt->close();
 $countStmt->close();
