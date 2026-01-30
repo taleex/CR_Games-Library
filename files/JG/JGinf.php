@@ -40,33 +40,14 @@ $sqlsug = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtor
   <div class="container">
 
     <?php for ($i = 0; $i < 2; $i++) echo "<br>"; ?>
-    <div style="background-color:rgba(0, 0, 0, 0.5);" class="game-info-card">
-      <div class="game-image-container">
-        <?php echo "<img src=" . 'backoffice/3P2/' . $lin['IMGjg'] . " alt='" . $lin['Nome_Jogo'] . "' class='game-main-image'>"; ?>
-      </div>
-      <div class="game-info-content">
-        <h4 style="color: White; text-align: center;"><b><?php echo $lin['Nome_Jogo']; ?> de <a href='index.php?cmd=PRlist&cod=<?php echo $lin['Codigo_Produtor']; ?>'><?php echo $lin['Nome_Produtor']; ?> </a></b></h4>
-        <div class="game-details-grid">
-          <div class="detail-item">
-            <span class="detail-label">Genero:</span>
-            <span class="detail-value"><a href='index.php?cmd=TJlist&cod=<?php echo $lin['CodTipoJogo']; ?>'><?php echo $lin['Genero']; ?></a></span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Data de Lancamento:</span>
-            <span class="detail-value"><?php echo $lin['Data']; ?></span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Preço:</span>
-            <span class="detail-value">
-              <?php if($lin['Preco'] == '0') echo "<b style='color:#f82249;'>Grátis</b>"; else echo $lin['Preco']." €"; ?>
-            </span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Descrição:</span>
-            <span class="detail-value"><?php echo $lin['descricao']; ?></span>
-          </div>
-        </div>
-        <div class="platforms-container">
+    <div style="background-color:rgba(0, 0, 0, 0.5);" class="card flex-md-row mb-4 box-shadow h-md-250">
+      <div class="card-body d-flex flex-column align-items-start">
+        <h4 style="color: White"><b><?php echo $lin['Nome_Jogo']; ?> de <a href='index.php?cmd=PRlist&cod=<?php echo $lin['Codigo_Produtor']; ?>'><?php echo $lin['Nome_Produtor']; ?> </a></b></h4>
+        <h6 style="color: White"><b>Genero: <a href='index.php?cmd=TJlist&cod=<?php echo $lin['CodTipoJogo']; ?>'><?php echo $lin['Genero']; ?></a></b></h6>
+        <h6 style="color: White"><b>Data de Lancamento: <?php echo $lin['Data']; ?></b></h6>
+        <h6 style="color: White"><b>Preço: <?php if($lin['Preco'] == '0') echo "<b  style='color:#f82249;'>Grátis</b>"; else echo $lin['Preco']." €"; ?></b></h6>
+        <h6 style="color: White"><b>Descrição: <?php echo $lin['descricao']; ?></b></h6>
+        <div>
           <?php if ($res1 = mysqli_query($lig, $sql1)) {
             while ($lin1 = mysqli_fetch_array($res1)) { ?>
               <a style="background-color:White; color:#f82249; margin:3px;" href="index.php?cmd=PLlist&cod=<?php echo $lin1['Codigo_Plataforma']; ?>" class="badge badge-dark badge-pill"><?php echo $lin1['Nome_Plataforma']; ?></a>
@@ -74,6 +55,7 @@ $sqlsug = "select Jogos.*,Produtores.*,Tipo_de_Jogo.* from Tipo_de_Jogo,Produtor
           } ?>
         </div>
       </div>
+      <?php echo "<img src=" . 'backoffice/3P2/' . $lin['IMGjg'] . " width='500' class='img-fluid'>"; ?>
     </div>
 
     <?php
