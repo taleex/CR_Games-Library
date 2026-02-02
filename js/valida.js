@@ -300,6 +300,7 @@ function checkLoginExists(login, callback) {
         // Login exists if response is NOT "Login disponível" (meaning it's taken)
         const exists = response !== "Login disponível";
         console.log("Login exists:", exists);
+        console.log("Calling callback with:", exists);
         callback(exists);
       } else {
         // Handle AJAX error - assume login is available as fallback
