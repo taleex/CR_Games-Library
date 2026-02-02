@@ -101,7 +101,9 @@ function validateLogin(input) {
   // Remove previous error styling
   input.classList.remove("is-invalid");
   input.classList.remove("is-valid");
-  errorElement.style.display = "none";
+  if (errorElement) {
+    errorElement.style.display = "none";
+  }
 
   if (login.length === 0) {
     showError(input, errorElement, "Campo obrigatório");
@@ -112,6 +114,7 @@ function validateLogin(input) {
 
   // Check if login already exists
   checkLoginExists(login, function (exists) {
+    console.log("Login validation callback - login:", login, "exists:", exists);
     if (exists) {
       showError(input, errorElement, "Este login já está em uso");
       validationState.login = false;
@@ -121,6 +124,7 @@ function validateLogin(input) {
       validationState.login = true;
       validationState.loginExists = false;
     }
+    console.log("Updated validation state:", validationState);
   });
   return true;
 }
