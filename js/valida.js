@@ -287,8 +287,15 @@ function checkLoginExists(login, callback) {
     if (xmlhttp.readyState == 4) {
       if (xmlhttp.status == 200) {
         const response = xmlhttp.responseText.trim();
+        console.log("Login validation response:", response);
+        console.log(
+          "Response === 'Login disponível':",
+          response === "Login disponível",
+        );
+
         // Login exists if response is NOT "Login disponível" (meaning it's taken)
         const exists = response !== "Login disponível";
+        console.log("Login exists:", exists);
         callback(exists);
       } else {
         // Handle AJAX error - assume login is available as fallback
