@@ -13,7 +13,7 @@ function validateEmail(input) {
   const email = input.value;
   const errorElement = document.getElementById("emailError");
   const emailRegex =
-    /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    /^([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)@((?:[a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
   // Remove previous error styling
   input.classList.remove("is-invalid");
@@ -53,15 +53,13 @@ function validateEmail(input) {
 function validateEmailImmediate(input) {
   const email = input.value;
   const errorElement = document.getElementById("emailError");
-  const loadingElement = document.getElementById("emailLoading");
   const emailRegex =
-    /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    /^([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)@((?:[a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
   // Remove previous error styling
   input.classList.remove("is-invalid");
   input.classList.remove("is-valid");
   errorElement.style.display = "none";
-  loadingElement.style.display = "none";
 
   if (email === "") {
     showError(input, errorElement, "Campo obrigatório");
@@ -71,12 +69,8 @@ function validateEmailImmediate(input) {
   }
 
   if (emailRegex.test(email)) {
-    // Show loading indicator
-    loadingElement.style.display = "block";
-
     // Check if email already exists
     checkEmailExists(email, function (exists) {
-      loadingElement.style.display = "none";
       if (exists) {
         showError(input, errorElement, "Este email já está em uso");
         validationState.email = false;
@@ -244,7 +238,9 @@ function checkEmailExists(email, callback) {
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState == 4) {
       if (xmlhttp.status == 200) {
-        const exists = xmlhttp.responseText.trim() !== "";
+        const response = xmlhttp.responseText.trim();
+        // Email exists if response is NOT "Email disponível" (meaning it's taken)
+        const exists = response !== "Email disponível";
         callback(exists);
       } else {
         // Handle AJAX error - assume email is available as fallback

@@ -14,8 +14,11 @@ if ($lig->connect_error) {
 $q = $_GET["m"]; // recebe uma parâmetro por GET
 
 // For registration, simply check if email exists in database
-$s = "select * from Utilizadores where email = '$q'";
-$res = $lig->query($s); 
+// Use prepared statement to prevent SQL injection
+$stmt = $lig->prepare("select * from Utilizadores where email = ?");
+$stmt->bind_param("s", $q);
+$stmt->execute();
+$res = $stmt->get_result();
 $l = $res->fetch_array();
 
 if($l) {

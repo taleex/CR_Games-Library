@@ -276,9 +276,8 @@ else
 						</div>
 						<div class="form-group">
 							<label for="regEmail">Email</label>
-							<input type="email" class="form-control" id="regEmail" name="email" placeholder="Digite seu email" oninput="validateEmailImmediate(this)" onblur="validateEmail(this)" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Formato de email inválido">
+							<input type="email" class="form-control" id="regEmail" name="email" placeholder="Digite seu email" oninput="validateEmailImmediate(this)" onblur="validateEmail(this)" required pattern="^([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)@((?:[a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Formato de email inválido">
 							<small id="emailError" class="form-text text-danger" style="display: none;"></small>
-							<small id="emailLoading" class="form-text text-muted" style="display: none;">Verificando disponibilidade...</small>
 						</div>
 						<div class="form-group">
 							<label for="regName">Nome do utilizador</label>
