@@ -59,7 +59,11 @@ function validateEmailImmediate(input) {
   // Remove previous error styling
   input.classList.remove("is-invalid");
   input.classList.remove("is-valid");
-  errorElement.style.display = "none";
+
+  // Check if errorElement exists before trying to access its style
+  if (errorElement) {
+    errorElement.style.display = "none";
+  }
 
   if (email === "") {
     showError(input, errorElement, "Campo obrigatório");
