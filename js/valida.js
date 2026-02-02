@@ -335,6 +335,8 @@ document
     const submitError = document.getElementById("submitError");
     submitError.style.display = "none";
 
+    console.log("Form submission - Current validation state:", validationState);
+
     // Validate all fields synchronously first
     const emailValid = validateEmail(document.getElementById("regEmail"));
     const loginValid = validateLogin(document.getElementById("regLogin"));
@@ -345,6 +347,14 @@ document
     const confirmPasswordValid = validateConfirmPassword(
       document.getElementById("regConfirmPassword"),
     );
+
+    console.log("Field validation results:", {
+      emailValid,
+      loginValid,
+      nameValid,
+      passwordValid,
+      confirmPasswordValid,
+    });
 
     // Check if all basic validations passed
     if (
@@ -377,6 +387,15 @@ document
     const loginValidationComplete =
       validationState.login || validationState.loginExists;
 
+    console.log("Validation completeness:", {
+      emailValidationComplete,
+      loginValidationComplete,
+      emailState: validationState.email,
+      emailExistsState: validationState.emailExists,
+      loginState: validationState.login,
+      loginExistsState: validationState.loginExists,
+    });
+
     if (!emailValidationComplete || !loginValidationComplete) {
       e.preventDefault();
       submitError.textContent =
@@ -395,7 +414,7 @@ document
       return value === true;
     });
 
-    console.log("Validation state:", validationState);
+    console.log("Final validation state:", validationState);
     console.log("All valid:", allValid);
 
     if (!allValid) {
