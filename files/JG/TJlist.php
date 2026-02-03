@@ -14,6 +14,14 @@ if (!$lin) {
     echo "<div class='section-header'><br>";
     echo "<h2 style='color: #d12141'>Gênero não encontrado</h2>";
     echo "<br>";
+    
+    echo "<center>";
+    echo "<div class='col-12 col-sm-6 col-md-4 col-lg-3 mx-auto'>";
+    echo "<input type='text' class='form-control' id='pesq' name='pesquisa' onInput='return filJogosGr(this,-404,0,3);' placeholder='Pesquisar jogos...'>";
+    echo "</div>";
+    echo "<br>";
+    echo "</center><br>";
+    
     echo "</div>";
     echo "<div class='container'>";
     echo "<div class='speaker'>";
