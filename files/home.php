@@ -116,20 +116,20 @@ $lin13JG = $res13JG->fetch_array();
             if ($lin1['comprovativo'] === NULL) {
           ?>
 
-              <form enctype="multipart/form-data" action="index.php?cmd=em" method="post">
+              <form enctype="multipart/form-data" action="index.php?cmd=em" method="post" style="color: white;">
 
                 <div class="form-group">
                   <input type="email" class="form-control" name="em" aria-describedby="emailHelp" placeholder="Enter email" value=" <?php echo $_SESSION['email']; ?>" required>
                 </div>
 
                 <div class="form-group">
-                  <label><b>Nome de Produtora</b></label>
+                  <label style="color: white;"><b>Nome de Produtora</b></label>
                   <input type="text" class="form-control" name="pr" aria-describedby="emailHelp" placeholder="Nome de PROD" required>
                 </div>
 
                 <!-- Foto de Utilizador -->
                 <div class="form-group">
-                  <label><b>Comprovativo de que pertence a empresa</b></label>
+                  <label style="color: white;"><b>Comprovativo de que pertence a empresa</b></label>
                   <input type="hidden" name="MAX_FILE_SIZE" value="300000000">
                   <input type="file" class="form-control" required="" id="imgjg" placeholder="Foto de jogo" name="img" required>
                 </div>
