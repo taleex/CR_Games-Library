@@ -8,10 +8,22 @@ if (!$res) {
 }
 $lin = $res->fetch_array();
 if (!$lin) {
-    echo "<div style='color: red; padding: 20px; border: 2px solid red;'>DEBUG: No genre found with cod: $co</div>";
+    // Genre not found, show empty results page with proper layout
+    echo "<section id='bc' class='full-height'>";
+    echo "<section id='speakers' class='wow fadeInUp'>";
+    echo "<div class='section-header'><br>";
+    echo "<h2 style='color: #d12141'>Gênero não encontrado</h2>";
+    echo "<br>";
+    echo "</div>";
+    echo "<div class='container'>";
+    echo "<div class='speaker'>";
+    echo "<a style='color: #d12141'>O gênero solicitado não foi encontrado em nosso catálogo.</a>";
+    echo "</div>";
+    echo "</div>";
+    echo "</section>";
+    echo "</section>";
     exit;
 }
-echo "<!-- DEBUG: Genre found: " . $lin['Genero'] . " -->";
 ?>
 
 <link href="../../css/my.css" rel="stylesheet">
